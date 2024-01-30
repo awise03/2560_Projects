@@ -6,9 +6,10 @@
 */
 
 
-#ifndef CODE.H
-#define CODE.H
+#ifndef CODE.HPP
+#define CODE.HPP
 
+using namespace std;
 #include <vector>
 
 class Code
@@ -16,13 +17,13 @@ class Code
     public:
     Code(int n, int m);
     void randomInitial();
-    int checkCorrect(const Code&guess);
-    int checkIncorrect(const Code&guess);
+    int checkCorrect(const Code&g1);
+    int checkIncorrect(const Code&g2);
     
 
 
     private:
-     std::vector<int> secretCode;
+    vector<int> secretCode;
 };
 
 #endif
