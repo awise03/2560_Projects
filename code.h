@@ -18,6 +18,7 @@ class Code
     void randomInitial();
     int checkCorrect(const Code&guess);
     int checkIncorrect(const Code&guess);
+    
 
 
 
