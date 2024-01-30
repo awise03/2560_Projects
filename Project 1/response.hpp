@@ -14,13 +14,18 @@ using namespace std;
 
 class response {
     private:
-        int n, m;
+        int correctVal, incorrectPos;
     public:
-        response();
-        response(int n, int m);
+        response(int, int);
 
-        bool operator==(response &r1);
-        bool operator<<(response &r1);
+        int getCorrectVal();
+        int getIncorrectPos();
+
+        void setCorrectVal(int);
+        void setIncorrectPos(int);
+
+        bool operator==(const response &r1);
+        friend ostream & operator<<(ostream&out, const response &r1);
 };
 
 
