@@ -21,7 +21,6 @@ class Code
     
 
 
-
     private:
      std::vector<int> secretCode;
 };
