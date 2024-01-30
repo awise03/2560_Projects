@@ -16,14 +16,13 @@ class Code
     public:
     Code(int n, int m);
     void randomInitial();
-    int checkCorrect(const vector<int> &guess);
-    int checkIncorrect(const vector<int> &guess);
+    int checkCorrect(const Code&guess);
+    int checkIncorrect(const Code&guess);
 
 
 
     private:
-     
-}
-
+     std::vector<int> secretCode;
+};
 
 #endif
