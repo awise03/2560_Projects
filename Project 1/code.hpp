@@ -16,12 +16,16 @@ using namespace std;
 class Code
 {
     public:
-        Code(int, int);
+        Code(int m, int n);
+        Code(vector<int>&);
 
         void randomInitial();
+        void printCode();
 
         int checkCorrect(const Code&g1);
         int checkIncorrect(const Code&g2);
+
+        vector<int> getCode();
 
     private:
         int n, m;
