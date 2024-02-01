@@ -9,21 +9,21 @@
 #ifndef CODE.HPP
 #define CODE.HPP
 
-using namespace std;
 #include <vector>
 
 class Code
 {
     public:
     Code(int n, int m);
-    void randomInitial();
-    int checkCorrect(const Code&g1);
-    int checkIncorrect(const Code&g2);
+    void randomInitial(int n, int m);
+    int checkCorrect(const Code&g1)const;
+    int checkIncorrect(const Code&g2)const;
     
 
 
     private:
-    vector<int> secretCode;
+    std::vector<int> secretCode;
+
 };
 
 #endif
