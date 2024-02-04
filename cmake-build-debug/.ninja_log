@@ -1,0 +1,9 @@
+# ninja log v5
+3	1465	1707083722568695848	CMakeFiles/2560_Projects.dir/Project_1/response.cpp.o	b562f58a47b379ca
+3	1496	1707083722604957240	CMakeFiles/2560_Projects.dir/Project_1/mastermind.cpp.o	42adae5b07f06990
+1	1610	1707083722718917466	CMakeFiles/2560_Projects.dir/Project_1/main.cpp.o	bd2adf432e2b71a2
+0	1630	1707083722739703207	CMakeFiles/2560_Projects.dir/Project_1/code.cpp.o	12dba541c1e37f22
+9	2467	1707084019308123445	CMakeFiles/2560_Projects.dir/Project_1/mastermind.cpp.o	42adae5b07f06990
+8	2472	1707084019326996464	CMakeFiles/2560_Projects.dir/Project_1/main.cpp.o	bd2adf432e2b71a2
+10	1988	1707084079314908113	CMakeFiles/2560_Projects.dir/Project_1/main.cpp.o	bd2adf432e2b71a2
+11	1989	1707084079303991021	CMakeFiles/2560_Projects.dir/Project_1/mastermind.cpp.o	42adae5b07f06990

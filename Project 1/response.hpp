@@ -16,7 +16,7 @@ class response {
     private:
         int correctVal, incorrectPos;
     public:
-        response(int, int);
+        response(int c, int i);
 
         int getCorrectVal();
         int getIncorrectPos();

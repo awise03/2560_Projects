@@ -20,11 +20,12 @@ class Mastermind
         Mastermind(); //defult constructur with default values for n and m
         
         void PrintSecret();
-        Code humanGuess() const;
-        response getResponse(const Code &g1) const;
+        Code humanGuess();
+        response getResponse(const Code g1);
         
-        bool isSolved(const response &r1)const;
+        bool isSolved(response r1);
         void playGame();
+        
 
     private:
         Code secretCode;

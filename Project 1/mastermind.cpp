@@ -26,14 +26,15 @@ void Mastermind::PrintSecret()
     secretCode.printCode();
 }
 
-Code Mastermind::humanGuess() const
+
+Code Mastermind::humanGuess()
 {
     cout << "Enter your guess code: ";
 
     vector<int> guessCode;
     int elements;
 
-    for(int i = 0; i < secretCode.size(); i++)
+    for(int i = 0; i < secretCode.getSecretCodeSize(); i++)
     {
         cin>> elements;
         guessCode.push_back(elements);
@@ -41,18 +42,20 @@ Code Mastermind::humanGuess() const
     return Code(guessCode);
 }
 
-int  Mastermind::getResponse(const Code &guess) const
+response Mastermind::getResponse(const Code g1)
 {
-    int correctResponse = secretCode.checkCorrect(guess);
+    int correct = secretCode.checkCorrect(g1);
+    int incorrect = secretCode.checkIncorrect(g1);
+    response res = response(correct, incorrect);
 
-    cout << "Response: " << correctResponse << endl;
+    // cout << "Response: " << res << endl;
 
-    return correctResponse;
+    return res;
 }
 
-bool Mastermind::isSolved(int correctReponse) const
+bool Mastermind::isSolved(response r1)
 {
-    return correctResponse == secretCode.getlength();
+    return r1.getCorrectVal() == secretCode.getSecretCodeSize();
 }
 
 void Mastermind::playGame()
@@ -60,22 +63,28 @@ void Mastermind::playGame()
     secretCode.randomInitial();
 
     secretCode.printCode();
+    int remainingGuesses = 9;
+    bool solved = false;
 
-    for(int a=1; a <= k; a++)
+    while (!solved && remainingGuesses >= 0)
     {
         Code guess = humanGuess();   
-
-        int correctResponse = getResponse(guess);
-
-        if(isSolved(correctResponse))
-        {
-            cout << "Congrats! You guessed the code.\n";
-            return;
-        }
+        response correctResponse = getResponse(guess);
+        
+        solved = isSolved(correctResponse);
+        remainingGuesses--;
     }
-
-    cout << "Sorry did not guess right.\n";
-    secretCode.printCode();
+    
+    if(solved)
+    {
+        cout<<"Congratulation!! You solved it!!" <<endl;
+    }
+    else
+    {
+        cout << "You're a Failure, You can never make it.\n";
+        secretCode.printCode();
+    }
+    
 }
 
 

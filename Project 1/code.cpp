@@ -31,8 +31,13 @@ void Code::randomInitial() {
     }
 }
 
+int Code::getSecretCodeSize()
+{
+    return secretCode.size();
+}
+
 // Function to check for the correct position and value
-int Code::checkCorrect(const Code &c1) {
+int Code::checkCorrect(const Code c1) {
     int count = 0;
     // Loops through each element in the secretCode vector
     for(int i = 0; i < secretCode.size(); i++) {
@@ -46,7 +51,7 @@ int Code::checkCorrect(const Code &c1) {
 }
 
 // Function to check for the correct value and incorrect position
-int Code::checkIncorrect(const Code &c1){
+int Code::checkIncorrect(const Code c1){
     int count = 0;
     vector<bool> used(secretCode.size(), false);
 
