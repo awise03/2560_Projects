@@ -21,9 +21,8 @@ class Mastermind
         
         void PrintSecret();
         Code humanGuess() const;
-        response getResponse(const Code &g1) const;
-        
-        bool isSolved(const response &r1)const;
+        response getResponse(const Code &g1) const; 
+        bool isSolved(const response &r1);
         void playGame();
 
     private:

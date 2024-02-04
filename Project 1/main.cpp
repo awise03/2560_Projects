@@ -4,15 +4,20 @@
 #include "code.hpp"
 #include "response.hpp"
 #include "mastermind.hpp"
+
 #include "code.cpp"
-#include <vector>
+#include "mastermind.cpp"
+#include "response.cpp"
 
 using namespace std;
 
 int main(){
-    cout << "test" << endl;
-    vector<int> testing = {4, 3, 2, 3, 6};
-    Code primaryTest(5, 7);
+    /**********************************/
+    /*             Part A             */           
+    /**********************************/
+    vector<int> testCase = {1, 2, 3, 4, 5};
+    Code primaryTest(testCase);
+
     cout << "Secret code: ";
     primaryTest.printCode();
 
@@ -39,5 +44,13 @@ int main(){
     cout << "\nGuess 3 checkCorrect(): " << primaryTest.checkCorrect(Guess3) << endl;
     cout << "Guess 3 checkIncorrect(): " << primaryTest.checkIncorrect(Guess3) << endl;
 
+    /**********************************/
+    /*             Part B             */           
+    /**********************************/
+
+    Mastermind game;
+    game.playGame();
+
+    return 0;
 }
 // TEST

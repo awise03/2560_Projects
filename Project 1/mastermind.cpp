@@ -1,23 +1,24 @@
 #include <iostream>
-#include "mastermind.hpp"
 #include <vector>
+
+#include "mastermind.hpp"
 #include "response.hpp"
 #include "code.hpp"
 
 using namespace std;
 
 // user-based input constructor
-Mastermind::Mastermind(int n, int m):secretCode(n,m)
+Mastermind::Mastermind(int n, int m) : secretCode(n,m)
 {
     cout << "Enter The code length (n)" <<endl;
     cin >> n;
 
     cout << "Enter the range of digits" << endl;
-    cin >>m;
+    cin >> m;
 }
 
 //Default constructor with default values of code length (n) and digit range (m)
-Mastermind::Mastermind():secretCode(5,10)
+Mastermind::Mastermind() : secretCode(5,10)
 {};
 
 void Mastermind::PrintSecret()
@@ -28,31 +29,30 @@ void Mastermind::PrintSecret()
 
 Code Mastermind::humanGuess() const
 {
-    cout << "Enter your guess code: ";
+    cout << "\nEnter your guess code: ";
 
     vector<int> guessCode;
     int elements;
 
-    for(int i = 0; i < secretCode.size(); i++)
+    for(int i = 0; i < secretCode.getSize(); i++)
     {
-        cin>> elements;
+        cin >> elements;
         guessCode.push_back(elements);
     }
     return Code(guessCode);
 }
 
-int  Mastermind::getResponse(const Code &guess) const
+response Mastermind::getResponse(const Code &guess) const
 {
-    int correctResponse = secretCode.checkCorrect(guess);
+    int correctPos = secretCode.checkCorrect(guess);
+    int incorrectPos = secretCode.checkIncorrect(guess);
 
-    cout << "Response: " << correctResponse << endl;
-
-    return correctResponse;
+    return response(correctPos, incorrectPos);
 }
 
-bool Mastermind::isSolved(int correctReponse) const
+bool Mastermind::isSolved(const response &correctResponse)
 {
-    return correctResponse == secretCode.getlength();
+    return correctResponse.getCorrectVal() == secretCode.getSize();
 }
 
 void Mastermind::playGame()
@@ -61,13 +61,15 @@ void Mastermind::playGame()
 
     secretCode.printCode();
 
-    for(int a=1; a <= k; a++)
+    for(int a = 0; a < 10; a++)
     {
         Code guess = humanGuess();   
 
-        int correctResponse = getResponse(guess);
+        response resp = getResponse(guess);
+        // int correctResponse = getResponse(guess);
+        cout << resp << endl;
 
-        if(isSolved(correctResponse))
+        if(isSolved(resp))
         {
             cout << "Congrats! You guessed the code.\n";
             return;

@@ -9,7 +9,6 @@ Code::Code(int length, int range) {
     n = length;
     m = range;
     secretCode.reserve(n);
-    randomInitial();
 }
 
 // Constructs a code object using the provided vector.
@@ -32,7 +31,7 @@ void Code::randomInitial() {
 }
 
 // Function to check for the correct position and value
-int Code::checkCorrect(const Code &c1) {
+int Code::checkCorrect(const Code &c1) const {
     int count = 0;
     // Loops through each element in the secretCode vector
     for(int i = 0; i < secretCode.size(); i++) {
@@ -46,19 +45,26 @@ int Code::checkCorrect(const Code &c1) {
 }
 
 // Function to check for the correct value and incorrect position
-int Code::checkIncorrect(const Code &c1){
+int Code::checkIncorrect(const Code &c1) const {
     int count = 0;
     vector<bool> used(secretCode.size(), false);
-
     // Loops through each value in secretCode
-    for(int j = 0; j < secretCode.size(); j++) {
+    for(int guessItr = 0; guessItr < c1.secretCode.size(); guessItr++) {
 
         // Loops through each value in the passed code
-        for(int k = 0; k < c1.secretCode.size(); k++) {
+        for(int codeItr = 0; codeItr < secretCode.size(); codeItr++) {
+            // Marks values of the correct position as used to be ignored later on
+            if(secretCode.at(codeItr) == c1.secretCode.at(guessItr) && codeItr == guessItr) {
+                used.at(codeItr) = true;
+                break;
+            }
+
             // Checks to see if the code being checked has been used yet and if the values are the same
-            if(!used.at(k) && secretCode.at(j) == c1.secretCode.at(k) && j != k){
+            if(!used.at(codeItr) && secretCode.at(codeItr) == c1.secretCode.at(guessItr) && codeItr != guessItr){
+                cout << "Code val = " << secretCode.at(codeItr) << " at " << codeItr <<", Guess val = " << c1.secretCode.at(guessItr) << " at " << guessItr << endl;
+                
                 // Makes it so this value can't be checked again
-                used.at(k) = true;
+                used.at(codeItr) = true;
                 // Increments count 
                 count++;
                 // Exits inner loop so no other values are checked
@@ -68,6 +74,14 @@ int Code::checkIncorrect(const Code &c1){
     }
     // Returns the count
     return count;
+}
+
+int Code::getSize() const {
+    return n;
+}
+
+int Code::getRange() const {
+    return m;
 }
 
 // Returns the secretCode vector
