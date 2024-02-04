@@ -1,13 +1,8 @@
 #include <iostream>
 #include <vector>
 
-#include "code.hpp"
-#include "response.hpp"
-#include "mastermind.hpp"
-
 #include "code.cpp"
-#include "mastermind.cpp"
-#include "response.cpp"
+
 
 using namespace std;
 
@@ -15,8 +10,9 @@ int main(){
     /**********************************/
     /*             Part A             */           
     /**********************************/
-    vector<int> testCase = {1, 2, 3, 4, 5};
-    Code primaryTest(testCase);
+  
+    Code primaryTest(5, 10);
+    primaryTest.randomInitial();
 
     cout << "Secret code: ";
     primaryTest.printCode();
@@ -44,13 +40,6 @@ int main(){
     cout << "\nGuess 3 checkCorrect(): " << primaryTest.checkCorrect(Guess3) << endl;
     cout << "Guess 3 checkIncorrect(): " << primaryTest.checkIncorrect(Guess3) << endl;
 
-    /**********************************/
-    /*             Part B             */           
-    /**********************************/
-
-    Mastermind game;
-    game.playGame();
-
     return 0;
 }
-// TEST
+
