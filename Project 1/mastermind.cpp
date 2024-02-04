@@ -42,12 +42,25 @@ Code Mastermind::humanGuess() const
 int response Mastermind::getResponse(const Code &guess) const
 {
     int correctResponse = secretCode.checkCorrect(guess);
-    int incorrectResponse = secretCode.checkIncorrect(guess);
 
     cout << "Response: " << correctResponse << endl;
 
     return correctResponse;
 }
+
+bool Mastermind::issolved(const response &guess) const
+{
+    return correctResponse == secretCode.getlength();
+}
+
+void Mastermind::playGame()
+{
+    secretCode.randomInitial();
+
+    secretCode.printCode();
+
+}
+
 
 
 
