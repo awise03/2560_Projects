@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// Creates a vector of length n and fills it with elements randomly.
 Code::Code(int length, int range) {
     n = length;
     m = range;
@@ -11,55 +12,69 @@ Code::Code(int length, int range) {
     randomInitial();
 }
 
+// Constructs a code object using the provided vector.
 Code::Code(vector<int> &guess){
     secretCode = guess;
 }
 
+// Randomly generates a code of length n and in range of 0 to m-1
 void Code::randomInitial() {
     srand(time(0));
     int randVal;
+
+    // Loops throgh all indices in the array
     for(int i = 0; i < n; i++) {
+        // Generates a random value between 0 and m-1
         randVal = rand() % (m);
+        // Places that new value in the back of the vector.
         secretCode.push_back(randVal);
     }
 }
 
-int Code::checkCorrect(const Code &code) {
+// Function to check for the correct position and value
+int Code::checkCorrect(const Code &c1) {
     int count = 0;
-    vector<int> guess = code.secretCode;
+    // Loops through each element in the secretCode vector
     for(int i = 0; i < secretCode.size(); i++) {
-        if(guess.at(i) == secretCode.at(i)){
+        // Increments by one if the two values are the same
+        if(c1.secretCode.at(i) == secretCode.at(i)){
             count++;
         }
     }
-    
+    // Returns the count
     return count;
 }
 
+// Function to check for the correct value and incorrect position
 int Code::checkIncorrect(const Code &c1){
     int count = 0;
-    bool ignore = false;
-    vector<int> codeCopy = secretCode;
     vector<bool> used(secretCode.size(), false);
 
-    for(int j = 0; j < codeCopy.size(); j++) {
+    // Loops through each value in secretCode
+    for(int j = 0; j < secretCode.size(); j++) {
 
+        // Loops through each value in the passed code
         for(int k = 0; k < c1.secretCode.size(); k++) {
-
-            if(!used.at(k) && codeCopy.at(j) == c1.secretCode.at(k) && j != k){
+            // Checks to see if the code being checked has been used yet and if the values are the same
+            if(!used.at(k) && secretCode.at(j) == c1.secretCode.at(k) && j != k){
+                // Makes it so this value can't be checked again
                 used.at(k) = true;
+                // Increments count 
                 count++;
+                // Exits inner loop so no other values are checked
                 break;
             }
         }
     }
+    // Returns the count
     return count;
 }
 
+// Returns the secretCode vector
 vector<int> Code::getCode(){
     return secretCode;
 }
-
+// Prints the secretCode vector
 void Code::printCode(){
     for(int i = 0; i < secretCode.size(); i++){
         cout << secretCode.at(i) << " ";
