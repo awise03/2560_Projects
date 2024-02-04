@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+
 #include "code.hpp"
 #include "response.hpp"
 #include "mastermind.hpp"
@@ -8,7 +10,7 @@ using namespace std;
 
 int main(){
     cout << "test" << endl;
-
+    vector<int> testing = {4, 3, 2, 3, 6};
     Code primaryTest(5, 7);
     cout << "Secret code: ";
     primaryTest.printCode();

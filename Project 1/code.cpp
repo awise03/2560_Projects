@@ -26,9 +26,8 @@ void Code::randomInitial() {
 
 int Code::checkCorrect(const Code &code) {
     int count = 0;
-    vector<int> guess;
-    guess = code.secretCode;
-    for(int i = 0; i < n; i++) {
+    vector<int> guess = code.secretCode;
+    for(int i = 0; i < secretCode.size(); i++) {
         if(guess.at(i) == secretCode.at(i)){
             count++;
         }
@@ -37,21 +36,23 @@ int Code::checkCorrect(const Code &code) {
     return count;
 }
 
-int Code::checkIncorrect(const Code &code) {
+int Code::checkIncorrect(const Code &c1){
     int count = 0;
-    vector<int> guess = code.secretCode;
+    bool ignore = false;
     vector<int> codeCopy = secretCode;
-    
-    for(int j = 0; j < codeCopy.size(); j++){
-        for(int k = 0; k < guess.size(); k++){
-            if(secretCode.at(j) == guess.at(k)){
+    vector<bool> used(secretCode.size(), false);
+
+    for(int j = 0; j < codeCopy.size(); j++) {
+
+        for(int k = 0; k < c1.secretCode.size(); k++) {
+
+            if(!used.at(k) && codeCopy.at(j) == c1.secretCode.at(k) && j != k){
+                used.at(k) = true;
                 count++;
-                
-                codeCopy.erase(codeCopy.begin()+k);
+                break;
             }
         }
     }
-
     return count;
 }
 
