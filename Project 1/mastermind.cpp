@@ -39,9 +39,14 @@ Code Mastermind::humanGuess() const
     return Code(guessCode);
 }
 
-response Mastermind::getResponse(const Code &guess) const
+int response Mastermind::getResponse(const Code &guess) const
 {
-    
+    int correctResponse = secretCode.checkCorrect(guess);
+    int incorrectResponse = secretCode.checkIncorrect(guess);
+
+    cout << "Response: " << correctResponse << endl;
+
+    return correctResponse;
 }
 
 
