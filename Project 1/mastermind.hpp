@@ -8,7 +8,7 @@
 #ifndef MASTERMIND_HPP
 #define MASTERMIND_HPP
 
-#include "Code.hpp"
+#include "code.hpp"
 #include "response.hpp" 
 
 using namespace std;

@@ -1,6 +1,8 @@
 #include <iostream>
 #include "mastermind.hpp"
 #include <vector>
+#include "response.hpp"
+#include "code.hpp"
 
 using namespace std;
 
@@ -31,7 +33,7 @@ Code Mastermind::humanGuess() const
     vector<int> guessCode;
     int elements;
 
-    for(int i = 0; i < secretCode.length(); i++)
+    for(int i = 0; i < secretCode.size(); i++)
     {
         cin>> elements;
         guessCode.push_back(elements);
@@ -39,7 +41,7 @@ Code Mastermind::humanGuess() const
     return Code(guessCode);
 }
 
-int response Mastermind::getResponse(const Code &guess) const
+int  Mastermind::getResponse(const Code &guess) const
 {
     int correctResponse = secretCode.checkCorrect(guess);
 
@@ -48,7 +50,7 @@ int response Mastermind::getResponse(const Code &guess) const
     return correctResponse;
 }
 
-bool Mastermind::issolved(const response &guess) const
+bool Mastermind::isSolved(int correctReponse) const
 {
     return correctResponse == secretCode.getlength();
 }
@@ -59,6 +61,21 @@ void Mastermind::playGame()
 
     secretCode.printCode();
 
+    for(int a=1; a <= k; a++)
+    {
+        Code guess = humanGuess();   
+
+        int correctResponse = getResponse(guess);
+
+        if(isSolved(correctResponse))
+        {
+            cout << "Congrats! You guessed the code.\n";
+            return;
+        }
+    }
+
+    cout << "Sorry did not guess right.\n";
+    secretCode.printCode();
 }
 
 
