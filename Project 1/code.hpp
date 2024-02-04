@@ -16,6 +16,7 @@ using namespace std;
 class Code
 {
     public:
+        // Code Constructors
         Code(int m, int n);
         Code(vector<int>&);
 
@@ -24,7 +25,7 @@ class Code
 
         int checkCorrect(const Code&g1);
         int checkIncorrect(const Code&g2);
-
+        
         vector<int> getCode();
 
     private:
