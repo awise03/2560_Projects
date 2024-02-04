@@ -5,6 +5,7 @@
 #include "response.hpp"
 #include "mastermind.hpp"
 #include "code.cpp"
+#include <vector>
 
 using namespace std;
 
