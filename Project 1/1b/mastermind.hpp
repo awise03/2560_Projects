@@ -16,8 +16,8 @@ using namespace std;
 class Mastermind
 { 
     public:
-        Mastermind(int n, int m);
         Mastermind(); //defult constructur with default values for n and m
+        Mastermind(int n, int m);
         
         void PrintSecret();
         Code humanGuess() const;

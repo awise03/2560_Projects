@@ -9,13 +9,7 @@ using namespace std;
 
 // user-based input constructor
 Mastermind::Mastermind(int n, int m) : secretCode(n,m)
-{
-    cout << "Enter The code length (n)" <<endl;
-    cin >> n;
-
-    cout << "Enter the range of digits" << endl;
-    cin >> m;
-}
+{}
 
 //Default constructor with default values of code length (n) and digit range (m)
 Mastermind::Mastermind() : secretCode(5,10)
@@ -64,11 +58,9 @@ void Mastermind::playGame()
     for(int a = 0; a < 10; a++)
     {
         Code guess = humanGuess();   
-
         response resp = getResponse(guess);
         // int correctResponse = getResponse(guess);
         cout << resp << endl;
-
         if(isSolved(resp))
         {
             cout << "Congrats! You guessed the code.\n";
