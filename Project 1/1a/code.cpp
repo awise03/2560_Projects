@@ -53,6 +53,7 @@ int Code::checkIncorrect(const Code &c1) const {
 
         // Loops through each value in the passed code
         for(int guessItr = 0; guessItr < c1.secretCode.size(); guessItr++) {
+            
             // Marks values of the correct position as used to be ignored later on
             if(secretCode.at(guessItr) == c1.secretCode.at(guessItr)) {
                 used.at(guessItr) = true;
