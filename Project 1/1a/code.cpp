@@ -55,16 +55,17 @@ int Code::checkIncorrect(const Code &c1) const {
         for(int guessItr = 0; guessItr < c1.secretCode.size(); guessItr++) {
             
             // Marks values of the correct position as used to be ignored later on
-            if(secretCode.at(guessItr) == c1.secretCode.at(guessItr)) {
-                used.at(guessItr) = true;
+            if(secretCode.at(codeItr) == c1.secretCode.at(codeItr)) {
+                used.at(codeItr) = true;
                 break;
             }
 
             // Checks to see if the code being checked has been used yet and if the values are the same
-            if(!used.at(guessItr) && secretCode.at(guessItr) == c1.secretCode.at(codeItr) && guessItr != codeItr){
+            if(!used.at(guessItr) && secretCode.at(codeItr) == c1.secretCode.at(guessItr) && guessItr != codeItr){
                 // Makes it so this value can't be checked again
                 used.at(guessItr) = true;
                 // Increments count 
+                cout << secretCode.at(codeItr) << ", " << c1.secretCode.at(guessItr) << endl;
                 count++;
                 // Exits inner loop so no other values are checked
                 break;
