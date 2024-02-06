@@ -32,7 +32,7 @@ int main(){
     }
 
 
-    game.playGame();
+    game.playGame();// Play the game
 
     return 0;
 }

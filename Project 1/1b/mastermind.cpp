@@ -22,7 +22,6 @@ void Mastermind::PrintSecret()
     cout<< "The secret code: " ;
     secretCode.printCode();
 }
-
 // Function to print the guess from the user
 Code Mastermind::humanGuess() const {
     cout << "\nEnter your guess code:\n";
@@ -46,7 +45,6 @@ Code Mastermind::humanGuess() const {
 
     return Code(guessCode);
 }
-
 // Function that get response for a guess
 response Mastermind::getResponse(const Code &guess) const
 {
@@ -55,13 +53,11 @@ response Mastermind::getResponse(const Code &guess) const
 
     return response(correctPos, incorrectPos);
 }
-
 // Function to check if the correct response indicates the code is solved
 bool Mastermind::isSolved(const response &correctResponse)
 {
     return correctResponse.getCorrectVal() == secretCode.getSize();
 }
-
 // Function to play Mastermind game
 void Mastermind::playGame()
 {
