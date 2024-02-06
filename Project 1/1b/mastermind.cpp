@@ -72,7 +72,7 @@ void Mastermind::playGame()
         cout << resp << endl; // Display the response
         if(isSolved(resp))
         {
-            cout << "Congrats! You guessed the code.\n";
+            cout << "Congrats! You guessed the code in " << a << " guesses!\n;
             return;
         }
     }
