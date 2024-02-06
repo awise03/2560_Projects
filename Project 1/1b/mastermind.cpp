@@ -90,7 +90,7 @@ void Mastermind::playGame()
 
         if(isSolved(resp))
         {
-            cout << "Congrats! You guessed the code in " << a << " guesses!\n";
+            cout << "\nCongrats! You guessed the code in " << a << " guesses!\n";
             return;
         }
     }
