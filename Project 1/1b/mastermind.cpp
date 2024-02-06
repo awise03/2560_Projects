@@ -9,8 +9,7 @@
 #include <vector>
 
 #include "mastermind.hpp"
-// #include "response.hpp"
-// #include "code.hpp"
+
 
 using namespace std;
 //Mastermind Class Implementation
