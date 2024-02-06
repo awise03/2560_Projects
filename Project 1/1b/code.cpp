@@ -4,10 +4,10 @@
     *       Author: Jacky and Alex
     * 
 */
-
-#include "code.hpp"
-#include <random>
 #include <iostream>
+#include <random>
+#include "code.hpp"
+
 
 using namespace std;
 
