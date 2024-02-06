@@ -1,3 +1,10 @@
+/*
+    * main.cpp
+    * Created on: Jan 30th
+    *       Author: Jacky and Alex
+    * 
+*/
+
 #include <iostream>
 #include <vector>
 
@@ -16,7 +23,7 @@ int main(){
     Mastermind game;
 
     cout << "Would you like to customize your code length and range of digits\n\
-    press 0 for No and 1 for yes ";
+    press 0 for No and 1 for Yes ";
     cin >> customize;
     if (customize)
     {

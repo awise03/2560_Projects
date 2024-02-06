@@ -1,7 +1,7 @@
 #main Makefile
 
 main: main.cpp
-	g++ -std=c++11 main.cpp -o proj1a
+	g++ main.cpp -o proj1a
 
 all: main
 	./proj1a

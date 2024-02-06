@@ -1,3 +1,10 @@
+/*
+    * mastermind.cpp
+    * Created on: Jan 30th
+    *       Author: Jacky and Alex
+    * 
+*/
+
 #include <iostream>
 #include <vector>
 
@@ -22,6 +29,7 @@ void Mastermind::PrintSecret()
     cout<< "The secret code: " ;
     secretCode.printCode();
 }
+
 // Function to print the guess from the user
 Code Mastermind::humanGuess() const {
     cout << "\nEnter your guess code:\n";
@@ -42,9 +50,10 @@ Code Mastermind::humanGuess() const {
 
         guessCode.push_back(element);
     }
-
+    
     return Code(guessCode);
 }
+
 // Function that get response for a guess
 response Mastermind::getResponse(const Code &guess) const
 {
@@ -53,11 +62,13 @@ response Mastermind::getResponse(const Code &guess) const
 
     return response(correctPos, incorrectPos);
 }
+
 // Function to check if the correct response indicates the code is solved
 bool Mastermind::isSolved(const response &correctResponse)
 {
     return correctResponse.getCorrectVal() == secretCode.getSize();
 }
+
 // Function to play Mastermind game
 void Mastermind::playGame()
 {
@@ -68,16 +79,23 @@ void Mastermind::playGame()
     for(int a = 0; a < 10; a++)
     {
         Code guess = humanGuess();// Get a guess from user
-        response resp = getResponse(guess);// Get a response for user
-        cout << resp << endl; // Display the response
+
+        cout << "Your guess: ";
+        guess.printCode();
+
+        response resp = getResponse(guess); // Get a response for user
+
+        cout << endl << resp << endl; // Display the response
+        cout << 10 - (a+1) << " guesses remaining." << endl;
+
         if(isSolved(resp))
         {
-            cout << "Congrats! You guessed the code in " << a << " guesses!\n;
+            cout << "Congrats! You guessed the code in " << a << " guesses!\n";
             return;
         }
     }
 
-    cout << "You failed! Womp, Womp.\n";
+    cout << "\nYou failed! Womp, Womp.\n\nCorrect code: \n";
     secretCode.printCode(); // Print the secret code if player fails
 }
 

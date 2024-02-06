@@ -1,3 +1,10 @@
+/*
+    * main.cpp
+    * Created on: Jan 30th
+    *       Author: Jacky and Alex
+    * 
+*/
+
 #include <iostream>
 #include <vector>
 
@@ -10,14 +17,13 @@ int main(){
     /**********************************/
     /*             Part A             */           
     /**********************************/
-    vector<int> testCase = {6, 2, 5, 8, 2};
-    Code primaryTest(testCase);
+    Code primaryTest(5, 10);
     primaryTest.randomInitial();
 
     cout << "Secret code: ";
     primaryTest.printCode();
 
-    vector<int> case1 = {1, 2, 3, 4, 5};
+    vector<int> case1 = {5, 0, 3, 2, 6};
     vector<int> case2 = {2, 1, 2, 2, 2};
     vector<int> case3 = {1, 3, 3, 4, 5};
 

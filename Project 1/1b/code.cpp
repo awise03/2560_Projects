@@ -1,3 +1,10 @@
+/*
+    * Code.cpp
+    * Created on: Jan 30th
+    *       Author: Jacky and Alex
+    * 
+*/
+
 #include "code.hpp"
 #include <random>
 #include <iostream>
@@ -21,7 +28,7 @@ void Code::randomInitial() {
     srand(time(0));
     int randVal;
 
-    // Loops through all indices in the array
+    // Loops throgh all indices in the array
     for(int i = 0; i < n; i++) {
         // Generates a random value between 0 and m-1
         randVal = rand() % (m);
@@ -75,12 +82,10 @@ int Code::checkIncorrect(const Code &c1) const {
     return count;
 }
 
-// Returns the length of the code
 int Code::getSize() const {
     return n;
 }
 
-// Returns the range of digits allowed in the code
 int Code::getRange() const {
     return m;
 }

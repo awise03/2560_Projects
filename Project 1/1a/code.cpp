@@ -1,3 +1,10 @@
+/*
+    * Code.cpp
+    * Created on: Jan 30th
+    *       Author: Jacky and Alex
+    * 
+*/
+
 #include "code.hpp"
 #include <random>
 #include <iostream>
@@ -65,7 +72,6 @@ int Code::checkIncorrect(const Code &c1) const {
                 // Makes it so this value can't be checked again
                 used.at(guessItr) = true;
                 // Increments count 
-                cout << secretCode.at(codeItr) << ", " << c1.secretCode.at(guessItr) << endl;
                 count++;
                 // Exits inner loop so no other values are checked
                 break;
