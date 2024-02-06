@@ -50,21 +50,41 @@ int Code::checkCorrect(const Code c1) {
     return count;
 }
 
+int Code::checkCorrect(const Code c1) {
+    int count = 0;
+    // Loops through each element in the secretCode vector
+    for(int i = 0; i < secretCode.size(); i++) {
+        // Increments by one if the two values are the same
+        if(c1.secretCode.at(i) == secretCode.at(i)){
+            count++;
+        }
+    }
+    // Returns the count
+    return count;
+}
+
 // Function to check for the correct value and incorrect position
-int Code::checkIncorrect(const Code c1){
+int Code::checkIncorrect(const Code c1) {
     int count = 0;
     vector<bool> used(secretCode.size(), false);
-
     // Loops through each value in secretCode
-    for(int j = 0; j < secretCode.size(); j++) {
+    for(int codeItr = 0; codeItr < secretCode.size(); codeItr++) {
 
         // Loops through each value in the passed code
-        for(int k = 0; k < c1.secretCode.size(); k++) {
+        for(int guessItr = 0; guessItr < c1.secretCode.size(); guessItr++) {
+            
+            // Marks values of the correct position as used to be ignored later on
+            if(secretCode.at(codeItr) == c1.secretCode.at(codeItr)) {
+                used.at(codeItr) = true;
+                break;
+            }
+
             // Checks to see if the code being checked has been used yet and if the values are the same
-            if(!used.at(k) && secretCode.at(j) == c1.secretCode.at(k) && j != k){
+            if(!used.at(guessItr) && secretCode.at(codeItr) == c1.secretCode.at(guessItr) && guessItr != codeItr){
                 // Makes it so this value can't be checked again
-                used.at(k) = true;
+                used.at(guessItr) = true;
                 // Increments count 
+                cout << secretCode.at(codeItr) << ", " << c1.secretCode.at(guessItr) << endl;
                 count++;
                 // Exits inner loop so no other values are checked
                 break;
