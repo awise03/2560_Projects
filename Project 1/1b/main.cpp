@@ -15,19 +15,20 @@ int main(){
     bool customize;
     Mastermind game;
 
-    cout << "Would you like to customize your Lockbox length and range of digits\n\
+    cout << "Would you like to customize your code length and range of digits\n\
     press 0 for No and 1 for yes ";
     cin >> customize;
-    if (customize){
-        int n , m;
+    if (customize)
+    {
+        int n, m;
 
-        cout << "Enter The code length (n)" <<endl;
+        cout << "Enter The code length (n)" << endl;
         cin >> n;
 
-        cout << "Enter the range of digits" << endl;
+        cout << "Enter the range of digits (m)" << endl;
         cin >> m;
 
-        Mastermind game = Mastermind(n,m);
+        game = Mastermind(n, m);  // Remove 'Mastermind' type declaration
     }
 
 

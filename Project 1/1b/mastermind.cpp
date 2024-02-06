@@ -8,12 +8,13 @@
 using namespace std;
 
 // user-based input constructor
-Mastermind::Mastermind(int n, int m) : secretCode(n,m)
-{}
-
-//Default constructor with default values of code length (n) and digit range (m)
-Mastermind::Mastermind() : secretCode(5,10)
+Mastermind::Mastermind(int n, int m) : secretCode(n, m)
 {};
+
+// Default constructor with default values of code length (n) and digit range (m)
+Mastermind::Mastermind() : secretCode(5, 10)
+{};
+
 
 void Mastermind::PrintSecret()
 {
@@ -21,20 +22,29 @@ void Mastermind::PrintSecret()
     secretCode.printCode();
 }
 
-Code Mastermind::humanGuess() const
-{
-    cout << "\nEnter your guess code: ";
+Code Mastermind::humanGuess() const {
+    cout << "\nEnter your guess code:\n";
 
     vector<int> guessCode;
-    int elements;
+    int element;
 
-    for(int i = 0; i < secretCode.getSize(); i++)
+    for (int i = 0; i < secretCode.getSize(); i++)
     {
-        cin >> elements;
-        guessCode.push_back(elements);
+        cout << "Digit " << i + 1 << ": ";
+        // Check if the input is a valid integer
+        while (!(cin >> element)) {
+            cout << "Error: Please enter a valid integer.\n";
+            cin.clear();  // Clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+            cout << "Digit " << i + 1 << ": ";
+        }
+
+        guessCode.push_back(element);
     }
+
     return Code(guessCode);
 }
+
 
 response Mastermind::getResponse(const Code &guess) const
 {
@@ -68,7 +78,7 @@ void Mastermind::playGame()
         }
     }
 
-    cout << "Sorry did not guess right.\n";
+    cout << "You failed! Womp, Womp.\n";
     secretCode.printCode();
 }
 
