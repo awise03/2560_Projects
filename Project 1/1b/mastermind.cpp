@@ -6,6 +6,7 @@
 #include "code.hpp"
 
 using namespace std;
+//Mastermind Class Implementation
 
 // user-based input constructor
 Mastermind::Mastermind(int n, int m) : secretCode(n, m)
@@ -15,17 +16,18 @@ Mastermind::Mastermind(int n, int m) : secretCode(n, m)
 Mastermind::Mastermind() : secretCode(5, 10)
 {};
 
-
+// Function to print the Secret Code
 void Mastermind::PrintSecret()
 {
     cout<< "The secret code: " ;
     secretCode.printCode();
 }
 
+// Function to print the guess from the user
 Code Mastermind::humanGuess() const {
     cout << "\nEnter your guess code:\n";
 
-    vector<int> guessCode;
+    vector<int> guessCode; // initializes guess vector
     int element;
 
     for (int i = 0; i < secretCode.getSize(); i++)
@@ -45,11 +47,11 @@ Code Mastermind::humanGuess() const {
     return Code(guessCode);
 }
 
-
+// Function that get response for a guess
 response Mastermind::getResponse(const Code &guess) const
 {
-    int correctPos = secretCode.checkCorrect(guess);
-    int incorrectPos = secretCode.checkIncorrect(guess);
+    int correctPos = secretCode.checkCorrect(guess); // checks if value is in correct position
+    int incorrectPos = secretCode.checkIncorrect(guess); // checks if value is in incorrect position
 
     return response(correctPos, incorrectPos);
 }

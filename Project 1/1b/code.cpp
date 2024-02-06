@@ -21,7 +21,7 @@ void Code::randomInitial() {
     srand(time(0));
     int randVal;
 
-    // Loops throgh all indices in the array
+    // Loops through all indices in the array
     for(int i = 0; i < n; i++) {
         // Generates a random value between 0 and m-1
         randVal = rand() % (m);
