@@ -28,7 +28,7 @@ int main(){
         cout << "Enter the range of digits (m)" << endl;
         cin >> m;
 
-        game = Mastermind(n, m);  // Remove 'Mastermind' type declaration
+        game = Mastermind(n, m);
     }
 
 

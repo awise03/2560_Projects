@@ -56,23 +56,24 @@ response Mastermind::getResponse(const Code &guess) const
     return response(correctPos, incorrectPos);
 }
 
+// Function to check if the correct response indicates the code is solved
 bool Mastermind::isSolved(const response &correctResponse)
 {
     return correctResponse.getCorrectVal() == secretCode.getSize();
 }
 
+// Function to play Mastermind game
 void Mastermind::playGame()
 {
-    secretCode.randomInitial();
+    secretCode.randomInitial();// Generates a random secret code
 
-    secretCode.printCode();
+    secretCode.printCode();// Displays the secret code
 
     for(int a = 0; a < 10; a++)
     {
-        Code guess = humanGuess();   
-        response resp = getResponse(guess);
-        // int correctResponse = getResponse(guess);
-        cout << resp << endl;
+        Code guess = humanGuess();// Get a guess from user
+        response resp = getResponse(guess);// Get a response for user
+        cout << resp << endl; // Display the response
         if(isSolved(resp))
         {
             cout << "Congrats! You guessed the code.\n";
@@ -81,7 +82,7 @@ void Mastermind::playGame()
     }
 
     cout << "You failed! Womp, Womp.\n";
-    secretCode.printCode();
+    secretCode.printCode(); // Print the secret code if player fails
 }
 
 

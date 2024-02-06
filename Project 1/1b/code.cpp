@@ -75,10 +75,12 @@ int Code::checkIncorrect(const Code &c1) const {
     return count;
 }
 
+// Returns the length of the code
 int Code::getSize() const {
     return n;
 }
 
+// Returns the range of digits allowed in the code
 int Code::getRange() const {
     return m;
 }
