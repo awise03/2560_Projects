@@ -17,7 +17,7 @@ class response {
         int correctVal, incorrectPos;
 
     public:
-        response(int, int);
+        response(int c, int i);
 
         int getCorrectVal() const;
         int getIncorrectPos() const;

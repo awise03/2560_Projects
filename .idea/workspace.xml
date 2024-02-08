@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="2560_Projects" targetName="2560_Projects" />
+    </generated>
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e98e4fc-c7f7-43b2-a074-f983c0099058" name="Changes" comment="" />
+    <list default="true" id="3e98e4fc-c7f7-43b2-a074-f983c0099058" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/2560_Projects.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/2560_Projects.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project 1/code.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 1/code.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project 1/code.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 1/code.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project 1/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 1/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project 1/mastermind.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 1/mastermind.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project 1/mastermind.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 1/mastermind.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project 1/response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 1/response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project 1/response.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 1/response.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code.hpp" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,9 +41,18 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="3.3" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
   <component name="ProjectId" id="2bgyFhxoIP61tEvbf1fA0pZeo2Q" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -26,15 +61,47 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "C/C++ File.main.cpp.executor": "Run",
+    "CMake Application.2560_Projects.executor": "Run",
+    "CMake Application.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CLionExternalConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager" selected="CMake Application.main">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="2560_Projects" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2560_Projects" TARGET_NAME="2560_Projects" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2560_Projects" RUN_TARGET_NAME="2560_Projects">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/Project 1/main.cpp" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.main" />
+      <item itemvalue="CMake Application.2560_Projects" />
+    </list>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -44,8 +111,17 @@
       <option name="presentableId" value="Default" />
       <updated>1706650917468</updated>
       <workItem from="1706650940385" duration="4000" />
+      <workItem from="1707082824769" duration="1279000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
