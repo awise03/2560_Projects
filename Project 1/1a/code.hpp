@@ -23,11 +23,13 @@ class Code
         void randomInitial();
         void printCode();
 
-        int checkCorrect(const Code g1);
-        int checkIncorrect(const Code g2);
+        int checkCorrect(const Code&g1) const;
+        int checkIncorrect(const Code&g2) const;
         
+        int getSize() const;
+        int getRange() const;
+
         vector<int> getCode();
-        int getSecretCodeSize();
 
     private:
         int n, m;

@@ -1,6 +1,13 @@
-#include "code.hpp"
-#include <random>
+/*
+    * Code.cpp
+    * Created on: Jan 30th
+    *       Author: Jacky and Alex
+    * 
+*/
 #include <iostream>
+#include <random>
+#include "code.hpp"
+
 
 using namespace std;
 
@@ -9,7 +16,6 @@ Code::Code(int length, int range) {
     n = length;
     m = range;
     secretCode.reserve(n);
-    randomInitial();
 }
 
 // Constructs a code object using the provided vector.
@@ -31,26 +37,8 @@ void Code::randomInitial() {
     }
 }
 
-int Code::getSecretCodeSize()
-{
-    return secretCode.size();
-}
-
 // Function to check for the correct position and value
-int Code::checkCorrect(const Code c1) {
-    int count = 0;
-    // Loops through each element in the secretCode vector
-    for(int i = 0; i < secretCode.size(); i++) {
-        // Increments by one if the two values are the same
-        if(c1.secretCode.at(i) == secretCode.at(i)){
-            count++;
-        }
-    }
-    // Returns the count
-    return count;
-}
-
-int Code::checkCorrect(const Code c1) {
+int Code::checkCorrect(const Code &c1) const {
     int count = 0;
     // Loops through each element in the secretCode vector
     for(int i = 0; i < secretCode.size(); i++) {
@@ -64,7 +52,7 @@ int Code::checkCorrect(const Code c1) {
 }
 
 // Function to check for the correct value and incorrect position
-int Code::checkIncorrect(const Code c1) {
+int Code::checkIncorrect(const Code &c1) const {
     int count = 0;
     vector<bool> used(secretCode.size(), false);
     // Loops through each value in secretCode
@@ -84,7 +72,6 @@ int Code::checkIncorrect(const Code c1) {
                 // Makes it so this value can't be checked again
                 used.at(guessItr) = true;
                 // Increments count 
-                cout << secretCode.at(codeItr) << ", " << c1.secretCode.at(guessItr) << endl;
                 count++;
                 // Exits inner loop so no other values are checked
                 break;
@@ -93,6 +80,14 @@ int Code::checkIncorrect(const Code c1) {
     }
     // Returns the count
     return count;
+}
+
+int Code::getSize() const {
+    return n;
+}
+
+int Code::getRange() const {
+    return m;
 }
 
 // Returns the secretCode vector
