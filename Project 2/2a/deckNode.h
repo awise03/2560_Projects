@@ -6,18 +6,21 @@
 #define INC_2560_PROJECTS_DECKNODE_H
 
 #include "card.h"
+
 // Linked list node
 template <typename T>
-class DeckNode
-{
+class DeckNode {
 public:
     // Default constructor with no initial value
     DeckNode() : next(nullptr) {}
-    // Constructor, initialized node value and next value
-    DeckNode(const T& item,node<T> *nextNode = NULL) : nodeValue(item), next(nextNode) {}
-private:
-    T dataValue;
-    DeckNode<T>* next;
 
+    // Constructor, initialized node value and next value
+    DeckNode(const T& item, DeckNode<T>* nextNode = nullptr) : dataValue(item), next(nextNode) {}
+
+private:
+    T dataValue;        // Data held by node
+    DeckNode<T>* next;  // Next node in the list
 };
+
 #endif //INC_2560_PROJECTS_DECKNODE_H
+
