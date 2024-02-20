@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-
+#include <vector>
 #include "deck.h"
 #include <cstdlib>
 #include <ctime>
