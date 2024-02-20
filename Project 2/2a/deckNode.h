@@ -17,9 +17,9 @@ public:
     // Constructor, initialized node value and next value
     DeckNode(const T& item, DeckNode<T>* nextNode = nullptr) : dataValue(item), next(nextNode) {}
 
-private:
-    T dataValue;        // Data held by node
-    DeckNode<T>* next;  // Next node in the list
+    DeckNode<T>* next; // Data held by node
+    T dataValue;// Next node in the list
+
 };
 
 #endif //INC_2560_PROJECTS_DECKNODE_H

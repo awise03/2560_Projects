@@ -19,7 +19,7 @@ Deck::Deck() : firstCard(nullptr)
         for(int value =1; value <=13; value++)
         {
             Card newCard;
-            newCard.setValue(value)
+            newCard.setValue(value);
             switch (suit)
             {
                 case 0:
@@ -40,27 +40,16 @@ Deck::Deck() : firstCard(nullptr)
     }
 }
 
-// deallocates memory used by deck
-Deck::~Deck()
-{
-    while(firstCard)
-    {
-        DeckNode<Card>* temp = firstCard;
-        firstCard = firstCard->next;
-        delete temp;
-    }
-}
-
 //  prints card in deck
-ostream& operator << (ostream& os, Deck& deck)
+ostream& operator << (ostream& out, Deck& deck)
 {
     DeckNode<Card>* current = deck.firstCard;
     while(current)
     {
-        os << current->dataValue << "\n";
+        out << current->dataValue << "\n";
         current = current->next;
     }
-    return os;
+    return out;
 }
 
 // function that add cards in the end of the deck
