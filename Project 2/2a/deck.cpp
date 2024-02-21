@@ -18,7 +18,7 @@ Deck::Deck() : firstCard(nullptr)
     {
         for(int value =1; value <=13; value++)
         {
-            Card newCard;
+            Card newCard = Card();
             newCard.setValue(value);
             switch (suit)
             {

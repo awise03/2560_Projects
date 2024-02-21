@@ -1,5 +1,6 @@
 #include <iostream>
 #include "deck.cpp"
+#include "card.cpp"
 
 using namespace std;
 

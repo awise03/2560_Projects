@@ -23,7 +23,7 @@ string Card::getSuit() {
 }
 
 ostream & operator<<(ostream&out, const Card &c1) {
-    out << "Suit: " << c1.suit << " \nCard Value: " << c1.value;
+    out << "Suit: " << c1.suit << " \nCard Value: " << c1.value << endl;
     return out;
 }
 
