@@ -18,6 +18,8 @@ class Card {
         int getValue();
         string getSuit();
 
+        bool operator = (const card& c1);
+
         friend ostream & operator<<(ostream &out, const Card &c1);
 
 };
