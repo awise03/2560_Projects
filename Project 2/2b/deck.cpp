@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "deck.h"
+
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -12,11 +13,11 @@
 using namespace std;
 
 // constructor : creates deck of cards in order
-Deck::Deck() : firstCard(nullptr)
+Deck::Deck() : firstCard(nullptr), head(nullptr)
 {
     for(int suit = 0; suit < 4; suit++)
     {
-        for(int value =1; value <=13; value++)
+        for(int value = 1; value <=13; value++)
         {
             Card newCard = Card();
             newCard.setValue(value);
@@ -40,6 +41,29 @@ Deck::Deck() : firstCard(nullptr)
     }
 }
 
+Deck::~Deck() { 
+    head = firstCard;
+    while(head != nullptr) {
+        DeckNode<Card> *temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+DeckNode<Card> Deck::replace(const Card &c1){
+    DeckNode<Card>* temp = new DeckNode<Card>(c1);
+
+    if(head == nullptr) {
+        head = temp;
+    } else {
+        DeckNode<Card>* current = head;
+        while(current -> next != nullptr) {
+            current = current -> next;
+        }
+        current -> next = temp;
+    }
+    
+}
 //  prints card in deck
 ostream& operator << (ostream& out, Deck& deck)
 {
