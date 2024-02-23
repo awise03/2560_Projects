@@ -14,7 +14,7 @@ class Deck {
         // Overloaded << operator to print the cards in the deck
         friend ostream& operator << (ostream &out, Deck &d1);
 
-        void replace(const Card &c1);
+        DeckNode<Card> replace(const Card &c1);
 
         ~Deck();
     private:
