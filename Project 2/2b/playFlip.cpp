@@ -29,13 +29,13 @@ void playFlip()
     d.shuffle();
     d.shuffle();
 
-    Deck copy = d;
+    //Deck copy = d;
     //prints top 24 cards
     cout << "Top 24 cards in the deck:" << endl;
     for(int i =0; i <24; i++)
     {
-        Card card = copy.deal();
-        cout << (i+1) <<". " << card << endl;
+        Card c1 = d.deal();
+        cout << (i+1) <<". " << c1 << endl;
     }
 
 
@@ -78,4 +78,5 @@ void playFlip()
     }
 
     cout << "\nYour final score is: " << score << endl;
+    cout << "\nRemaining cards: \n" << d << endl;
 }
