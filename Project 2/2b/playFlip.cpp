@@ -45,10 +45,18 @@ void playFlip()
     while(move != "stand" || cards != 0) {
         cout << "\nYour current score is " << score;
         cout << "\nYou have " << cards << " cards remaining.";
-        cout << "\nWould you like to flip your card or stand (flip, stand)? " << endl;
-    
-        cin >> move;
+        bool invalid = true;
+        while(invalid){
+            cout << "\nWould you like to flip your card or stand (flip, stand)? " << endl;
 
+            cin >> move;
+            if(move == "stand" || move == "flip") {
+                invalid = false;
+            } else {
+                cout << "\n Invalid Input, please try again" << endl;
+            }
+        }
+        
         if(move == "flip") {
             // Pulls a card from the top of the deck
             Card card = d.deal();
@@ -70,12 +78,11 @@ void playFlip()
         // Breaks out if the player decides to stand
         } else if (move == "stand"){
             break;
-        } else {
-            "Incorrect input, please try again";
-        }
         
-    }
+        }
 
+    
+    }
     cout << "\nYour final score is: " << score << endl;
     cout << "\nRemaining cards: \n" << d << endl;
 }
