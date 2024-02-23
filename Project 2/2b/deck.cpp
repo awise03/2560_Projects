@@ -42,24 +42,32 @@ Deck::Deck() : firstCard(nullptr), head(nullptr)
 }
 
 Deck::~Deck() { 
+    // Starts at the front of the deck
     head = firstCard;
+    // Moves forward until we reach the end of the deck
     while(head != nullptr) {
         DeckNode<Card> *temp = head;
         head = head->next;
+        // Deletes the node at the current deck location. 
         delete temp;
     }
 }
 
+// Takes the inputted card and places it in the back of the deck.
 DeckNode<Card> Deck::replace(const Card &c1){
     DeckNode<Card>* temp = new DeckNode<Card>(c1);
 
+    // Sets the head of the deck to the current card if it is at the end of the deck
     if(head == nullptr) {
         head = temp;
     } else {
+        // Creates a temporary variable equal to the loaction of head
         DeckNode<Card>* current = head;
+        // Iterates through each item in the deck until we reach the end of the list, places the card in the back of the list.
         while(current -> next != nullptr) {
             current = current -> next;
         }
+
         current -> next = temp;
     }
     
