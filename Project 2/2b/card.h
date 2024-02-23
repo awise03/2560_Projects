@@ -13,12 +13,11 @@ class Card {
         string suit;
     public:
         Card();
+        Card& operator =(const Card& other);
         void setValue(int);
         void setSuit(string);
         int getValue();
         string getSuit();
-
-        bool operator = (const Card& c1);
 
         friend ostream & operator<<(ostream &out, const Card &c1);
 
