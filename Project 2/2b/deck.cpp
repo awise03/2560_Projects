@@ -54,7 +54,7 @@ Deck::~Deck() {
 }
 
 // Takes the inputted card and places it in the back of the deck.
-DeckNode<Card> Deck::replace(const Card &c1){
+void Deck::replace(const Card &c1){
     DeckNode<Card>* temp = new DeckNode<Card>(c1);
 
     // Sets the head of the deck to the current card if it is at the end of the deck
