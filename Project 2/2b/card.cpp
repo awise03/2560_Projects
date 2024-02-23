@@ -36,10 +36,10 @@ ostream & operator<<(ostream&out, const Card &c1) {
 }
 
 // Copy Constructor.
-Card& Card::operator=(const Card &c1) {
-    if(this != &c1) { 
-        value = c1.value;
-        suit = c1.suit;
+Card& Card::operator=(const Card& other) {
+    if(this != &other) {
+        value = other.value;
+        suit = other.suit;
     }
     return *this;
 }

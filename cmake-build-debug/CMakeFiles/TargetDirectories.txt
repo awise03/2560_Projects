@@ -1,3 +1,0 @@
-/Users/jackymoraisa/CLionProjects/2560_Projects/cmake-build-debug/CMakeFiles/2560_Projects.dir
-/Users/jackymoraisa/CLionProjects/2560_Projects/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/jackymoraisa/CLionProjects/2560_Projects/cmake-build-debug/CMakeFiles/rebuild_cache.dir

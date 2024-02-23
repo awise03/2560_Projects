@@ -17,6 +17,8 @@ class Deck {
         void replace(const Card &c1);
 
         ~Deck();
+
+        Card deal();
     private:
         // Pointer to the first card on the deck
         DeckNode<Card>* firstCard;
