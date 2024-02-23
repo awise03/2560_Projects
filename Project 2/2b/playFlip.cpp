@@ -30,9 +30,11 @@ void playFlip()
 
     //cout << d << endl;
     cout << endl;
+    int cards = 24;
     string move = "";
-    while(move != "stand") {
+    while(move != "stand" || cards != 0) {
         cout << "\nYour current score is " << score;
+        cout << "\nYou have " << cards << " cards remaining.";
         cout << "\nWould you like to flip your card or stand (flip, stand)? " << endl;
     
         cin >> move;
@@ -54,6 +56,7 @@ void playFlip()
         } else {
             break;
         }
+        cards--;
     }
 
     cout << "\nYour final score is: " << score << endl;
