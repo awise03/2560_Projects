@@ -29,11 +29,12 @@ void playFlip()
     d.shuffle();
     d.shuffle();
 
+    Deck copy = d;
     //prints top 24 cards
     cout << "Top 24 cards in the deck:" << endl;
     for(int i =0; i <24; i++)
     {
-        Card card = d.deal();
+        Card card = copy.deal();
         cout << (i+1) <<". " << card << endl;
     }
 
