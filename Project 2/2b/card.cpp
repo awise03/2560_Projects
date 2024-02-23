@@ -27,3 +27,10 @@ ostream & operator<<(ostream&out, const Card &c1) {
     return out;
 }
 
+Card& Card::operator=(const Card &c1) {
+    if(this != &c1) { 
+        value = c1.value;
+        suit = c1.suit;
+    }
+    return *this;
+}
