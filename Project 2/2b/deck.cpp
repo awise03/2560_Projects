@@ -72,6 +72,29 @@ void Deck::replace(const Card &c1){
     }
     
 }
+
+Card Deck::deal()
+{
+    if(firstCard == nullptr)
+    {
+        // Handle case when deck is empty
+        cerr << "Error: Deck is empty. Unable to deal a card." << endl;
+        // Return a default-constructed card or throw an exception
+        // depending on your error handling strategy
+        return Card();// This returns a default-constructed card
+    }
+    else
+    {   //Get the top card
+        Card topCard = firstCard->dataValue;
+        // Remove the top card from the deck
+        DeckNode<Card> *temp = firstCard;
+        firstCard = firstCard->next;
+        delete temp;
+        // Return the top card
+        return topCard;
+
+    }
+}
 //  prints card in deck
 ostream& operator << (ostream& out, Deck& deck)
 {

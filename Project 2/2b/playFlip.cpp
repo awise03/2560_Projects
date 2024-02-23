@@ -28,6 +28,33 @@ void playFlip()
     d.shuffle();
     d.shuffle();
 
+    //cout << d << endl;
+    cout << endl;
+    string move = "";
+    while(move != "stand") {
+        cout << "\nYour current score is " << score;
+        cout << "\nWould you like to flip your card or stand (flip, stand)? " << endl;
+    
+        cin >> move;
+        if(move == "flip") {
+            Card card = d.deal();
+            cout << "\n Your card is: \n " << card << endl;
+            if(card.getValue() == 1) {
+                score += 10;
+            } else if(card.getValue() >= 11 && card.getValue() <= 13){
+                score += 5;
+            } else if(card.getValue() == 7) {
+                score /= 2;
+            } else if (card.getValue() >= 2 && card.getValue() <= 6){
+                score = 0;
+            }
+            if(card.getSuit() == "Heart") {
+                score ++;
+            }
+        } else {
+            break;
+        }
+    }
 
-
+    cout << "\nYour final score is: " << score << endl;
 }
