@@ -29,11 +29,5 @@ void playFlip()
     d.shuffle();
 
 
-    int input = 1;
-    int noTurns = 0;
-    while (input != 0)
-    {
-
-    }
 
 }
