@@ -1,3 +1,7 @@
+//
+// Created by Jackymora Isa and Alexander Wise on 2/20/24.
+//
+
 #include <iostream>
 #include "deck.cpp"
 #include "card.cpp"

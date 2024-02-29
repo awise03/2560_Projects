@@ -1,6 +1,8 @@
+//
+// Created by Jackymora Isa and Alexander Wise on 2/20/24.
+//
+
 #include <iostream>
-
-
 
 #ifndef CARD_H
 #define CARD_H

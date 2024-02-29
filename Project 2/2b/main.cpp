@@ -1,5 +1,5 @@
 //
-// Created by Jackymora Isa on 2/21/24.
+// Created by Jackymora Isa and Alexander Wise on 2/21/24.
 //
 #include "playFlip.cpp"
 #include "deck.cpp"
