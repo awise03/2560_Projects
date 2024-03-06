@@ -15,6 +15,8 @@ void Dictionary::readDict(const string& filename) {
         }
 
         file.close();
+    } else {
+        cout << "Error opening file" << endl;
     }
 }
 

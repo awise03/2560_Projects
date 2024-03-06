@@ -10,6 +10,7 @@ using namespace std;
 class Dictionary {
     private: 
         vector<string> words;
+        
 
     public:
         void readDict(const string& filename);
