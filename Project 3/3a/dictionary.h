@@ -9,12 +9,13 @@ using namespace std;
 
 class Dictionary {
     private: 
-        vector<string> keys;
+        vector<string> words;
+
     public:
-        void readDict();
+        void readDict(const string& filename);
         void printDict();
         void selectionSort();
-        void binarySearch();
+        int binarySearch(const string& key);
 };
 
 #endif

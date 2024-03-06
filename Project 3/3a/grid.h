@@ -3,7 +3,7 @@
 
 class Grid {
     private:
-    
+        //char grid[][];
     public:
         void fillGrid();
 
