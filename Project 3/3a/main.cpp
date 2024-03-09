@@ -20,5 +20,21 @@ int main() {
 }
 
 void findMatches(const Dictionary& dict, const Grid& grid) {
+    // Vertical Up
+
+    // Vertical Down
+
+    // Horizontal Left
+
+    // Horizontal Right
+    
+    // Diagonal Up Right
+
+    // Diagonal Down Right
+
+    // Diagonal Up Left
+
+    // Diagonal Down Left
+
 
 }
