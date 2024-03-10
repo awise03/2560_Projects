@@ -11,10 +11,10 @@ using namespace std;
 
 class Grid {
     private:
-        vector<vector<char>> letters;
         int rows, cols;
 
     public:
+        vector<vector<char>> letters;
         void fillGrid(const string& filename);
         void printGrid();
 
