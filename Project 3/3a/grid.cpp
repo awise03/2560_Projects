@@ -18,10 +18,10 @@ void Grid::fillGrid(const string& filename) {
         letters.resize(rows, vector<char>(cols));
 
         // Iterates through each character
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < cols; j++) {
+        for(int r = 0; r < rows; r++) {
+            for(int c = 0; c < cols; c++) {
                 // Reads the next character in the grid and stores it in the vector
-                file >> letters[i][j];
+                file >> letters[r][c];
             }
         }
         // Closes the file after completion
