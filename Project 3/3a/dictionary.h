@@ -13,10 +13,13 @@ class Dictionary {
         
 
     public:
+
+        vector<string> getWords() const;
         void readDict(const string& filename);
         void printDict();
         void selectionSort();
-        int binarySearch(const string& key);
+        int binarySearch(const string& key) const;
+        int getDictSize() const;
 };
 
 #endif

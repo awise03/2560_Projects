@@ -40,11 +40,12 @@ void Dictionary::selectionSort() {
         if(minIndex != i) {
             swap(words[i], words[minIndex]);
         }
+        cout << words[i] << endl;
     }
 }
 
 // Returns the index of the word we are searching for
-int Dictionary::binarySearch(const string& key) {
+int Dictionary::binarySearch(const string& key) const {
     int left = 0; 
     int right = words.size() - 1;
 
@@ -60,4 +61,12 @@ int Dictionary::binarySearch(const string& key) {
     }
 
     return -1;
+}
+
+int Dictionary::getDictSize() const {
+    return words.size();
+}
+
+vector<string> Dictionary::getWords() const {
+    return words;
 }

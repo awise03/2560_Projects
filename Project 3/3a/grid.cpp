@@ -40,3 +40,7 @@ void Grid::printGrid() {
         cout << endl;
     }
 }
+
+int Grid::getRow() {
+    return rows;
+}

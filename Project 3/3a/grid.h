@@ -17,7 +17,8 @@ class Grid {
         vector<vector<char>> letters;
         void fillGrid(const string& filename);
         void printGrid();
-
+        int getRow();
+        
 };
 
 #endif 
