@@ -6,20 +6,24 @@
 using namespace std;
 
 int main() {
-    // int i[] = {0, 1, 2, 3, 4, 5};
-    // cout << sizeof(i)/sizeof(i[0]);
-
+    // Dictionary object
     Dictionary dict;
+    // Pass dictionary file to dictionary object
     dict.readDict("dictionary-2.txt");
+    // Sort dictionary using selection sort
     dict.selectionSort();
-    //dict.printDict();
     
+    // Grid object
     Grid grid;
+    // Pass grid file to grid object
     grid.fillGrid("input15-2.txt");
+    // Print grid 
     grid.printGrid();
 
+    // Vector of matches found in word search grid
     vector<string> matches = findMatches(dict, grid);
 
+    // Print the matches
     for(int i = 0; i < matches.size(); i++) {
         cout << matches[i] << endl;
     }

@@ -27,7 +27,7 @@ void Grid::fillGrid(const string& filename) {
         // Closes the file after completion
         file.close();
     } else {
-        cout << "Error opening file" << endl;
+        cerr << "Error opening file" << endl;
     }
 }
 

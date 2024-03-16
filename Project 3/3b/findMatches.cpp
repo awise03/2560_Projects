@@ -50,7 +50,7 @@ void searchWord(const Dictionary& dictionary, const Grid& grid, int r, int c, in
         // Add word to the matches vector if it exists
         if (dictionary.binarySearch(search_word) != -1) {
             matches.push_back(search_word);
-            cout << "\n Word Found: " << search_word;
+            //cout << "\n Word Found: " << search_word;
         }
 
         // Change current position based on operation passed to function
