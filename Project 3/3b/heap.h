@@ -17,7 +17,6 @@ class Heap {
         int left(const int &index);
         int right(const int &index);
         T getItem(const int &index);
-
 };
 
 #endif
