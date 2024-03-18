@@ -1,6 +1,7 @@
 #include "dictionary.cpp"
 #include "grid.cpp"
 #include "findMatches.cpp"
+#include "heap.cpp"
 #include <iostream>
 
 using namespace std;
@@ -37,7 +38,9 @@ void search() {
             dict.quicksort(0, dict.getDictSize());
             break;
         case(3):
-            break;
+            Heap h1;
+            h1.buildMaxHeap(dict.getWords());
+
         default:
             cout << "Invalid selection. Please try again";
             break;
