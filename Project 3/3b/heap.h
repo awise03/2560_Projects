@@ -11,12 +11,15 @@ class Heap {
     private:
         vector<T> data;
         int heapsize;
-
-    public:
         int parent(const int &index);
         int left(const int &index);
         int right(const int &index);
+
+    public:
         T getItem(const int &index);
+        vector<T> heapsort();
+        void maxHeapify(const int &index);
+        void buildMaxHeap(const vector<T> &dict);
 };
 
 #endif
