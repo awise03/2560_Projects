@@ -1,3 +1,7 @@
+//
+// Created by Alexander Wise and Jackymora Isa on 3/6/24.
+//
+
 #include "grid.h"
 #include <vector>
 #include <iostream>

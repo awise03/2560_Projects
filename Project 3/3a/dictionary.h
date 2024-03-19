@@ -1,3 +1,7 @@
+//
+// Created by Alexander Wise and Jackymora Isa on 3/6/24.
+//
+
 #include <iostream>
 
 
@@ -10,10 +14,8 @@ using namespace std;
 class Dictionary {
     private: 
         vector<string> words;
-        
 
     public:
-
         vector<string> getWords() const;
         void readDict(const string& filename);
         void printDict();

@@ -1,3 +1,7 @@
+//
+// Created by Alexander Wise and Jackymora Isa on 3/14/24.
+//
+
 #include <iostream>
 
 
@@ -21,6 +25,7 @@ class Dictionary {
 
         void quicksort(int min, int max);
         int partition(int min, int max);
+        void heapsort();
 
         int binarySearch(const string& key) const;
         int getDictSize() const;

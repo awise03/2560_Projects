@@ -1,3 +1,7 @@
+//
+// Created by Alexander Wise and Jackymora Isa on 3/6/24.
+//
+
 #include "dictionary.cpp"
 #include "grid.cpp"
 #include "findMatches.cpp"
