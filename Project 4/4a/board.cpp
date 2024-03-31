@@ -4,6 +4,7 @@
 #include "d_except.h"
 #include <list>
 #include <fstream>
+
 using namespace std;
 typedef int ValueType; // The type of the value in a cell
 const int Blank = -1; // Indicates that a cell is blank
@@ -25,6 +26,8 @@ class board
         void initialize(ifstream &fin);
         void print();
         bool isBlank(int, int);
+        void printConflicts();
+        void setCell(int, int, int);
         ValueType getCell(int, int);
     private:
         // The following matrices go from 1 to BoardSize in each
@@ -62,6 +65,15 @@ void board::initialize(ifstream &fin) // Read a Sudoku board from the input file
         }
 }
 
+void board::printConflicts() {
+    return;
+}
+
+// Sets the cell at the given index to the given value
+void board::setCell(int i, int j, int val) {
+    value[i][j] = val;
+}
+
 // Return the square number of cell i,j (counting from left to right,
 // top to bottom. Note that i and j each go from 1 to BoardSize
 int squareNumber(int i, int j)
@@ -95,6 +107,9 @@ bool board::isBlank(int i, int j)
     return (getCell(i,j) == Blank);
 }
 
+
+
+
 void board::print()
 // Prints the current board.
 {
@@ -103,23 +118,24 @@ void board::print()
         if ((i-1) % SquareSize == 0)
         {
             cout << " -";
-            for (int j = 1; j <= BoardSize; j++)
-                cout << "---";
+	        for (int j = 1; j <= BoardSize; j++)
+	            cout << "---";
             cout << "-";
-            cout << endl;
+	        cout << endl;
         }
         for (int j = 1; j <= BoardSize; j++)
         {
-            if ((j-1) % SquareSize == 0)
-                cout << "|";
+	        if ((j-1) % SquareSize == 0)
+	            cout << "|";
             if (!isBlank(i,j))
                 cout << " " << getCell(i,j) << " ";
-            else
-                cout << " ";
+        else
+            cout << "   ";
         }
         cout << "|";
         cout << endl;
     }
+
     cout << " -";
     for (int j = 1; j <= BoardSize; j++)
         cout << "---";
