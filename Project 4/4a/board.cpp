@@ -27,7 +27,10 @@ class board
         void print();
         bool isBlank(int, int);
         void printConflicts();
+        void updateConflicts();
+        void clearCell(int, int);
         void setCell(int, int, int);
+        bool checkSolved();
         ValueType getCell(int, int);
     private:
         // The following matrices go from 1 to BoardSize in each
@@ -63,17 +66,28 @@ void board::initialize(ifstream &fin) // Read a Sudoku board from the input file
         if (ch != '.')
             setCell(i,j,ch-'0'); // Convert char to int
         }
+
+    updateConflicts();    
 }
 
 void board::printConflicts() {
     return;
 }
 
+void board::updateConflicts() {
+    return;
+}
+
 // Sets the cell at the given index to the given value
 void board::setCell(int i, int j, int val) {
     value[i][j] = val;
+    updateConflicts();
 }
 
+void board::clearCell(int i, int j) {
+    value[i][j] = Blank;
+    updateConflicts();
+}
 // Return the square number of cell i,j (counting from left to right,
 // top to bottom. Note that i and j each go from 1 to BoardSize
 int squareNumber(int i, int j)
@@ -82,6 +96,7 @@ int squareNumber(int i, int j)
     // coordinates of the square that i,j is in.
     return SquareSize * ((i-1)/SquareSize) + (j-1)/SquareSize + 1;
 }
+
 ostream &operator<<(ostream &ostr, vector<int> &v) // Overloaded output operator for vector class.
 {
     for (int i = 0; i < v.size(); i++)
@@ -106,9 +121,6 @@ bool board::isBlank(int i, int j)
         throw rangeError("bad value in setCell");
     return (getCell(i,j) == Blank);
 }
-
-
-
 
 void board::print()
 // Prints the current board.
@@ -141,6 +153,21 @@ void board::print()
         cout << "---";
     cout << "-";
     cout << endl;
+    printConflicts();
+}
+
+bool board::checkSolved() {
+    updateConflicts();
+
+    for(int i = 0; i <= BoardSize; i++) {
+        for(int j = 0; j <= BoardSize; j++) {
+            if(isBlank(i, j)) {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
 
 int main()
