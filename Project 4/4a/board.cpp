@@ -83,6 +83,7 @@ void board::initialize(ifstream &fin) // Read a Sudoku board from the input file
 
     updateConflicts();    
 }
+
 // Return the square number of cell i,j (counting from left to right,
 // top to bottom. Note that i and j each go from 1 to BoardSize
 int squareNumber(int i, int j)
