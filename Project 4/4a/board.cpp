@@ -36,9 +36,17 @@ class board
         // The following matrices go from 1 to BoardSize in each
         // dimension, i.e., they are each (BoardSize+1) * (BoardSize+1)
         matrix<ValueType> value;
+        // Matrices to store conflict in rows, columns, and sqaures
+        matrix<vector<int> > rowConflicts;
+        matrix<vector<int> > colConflicts;
+        matrix<vector<int> > squareConflicts;
 };
 
-board::board(int sqSize) : value(BoardSize+1,BoardSize+1) // Board constructor
+board::board(int sqSize)
+    : value(BoardSize+1,BoardSize+1),
+      rowConflicts(BoardSize + 1, BoardSize + 1),
+      colConflicts(BoardSize + 1, BoardSize + 1),
+      squareConflicts(BoardSize + 1, BoardSize + 1)// Board constructor
 {
     clear();
 }
@@ -46,10 +54,16 @@ board::board(int sqSize) : value(BoardSize+1,BoardSize+1) // Board constructor
 void board::clear() // Mark all possible values as legal for each board entry
 {
     for (int i = 1; i <= BoardSize; i++)
+    {
         for (int j = 1; j <= BoardSize; j++)
         {
             value[i][j] = Blank;
+            rowConflicts[i][j].clear();
+            colConflicts[i][j].clear();
+            squareConflicts[i][j].clear();
         }
+    }
+
 }
 
 void board::initialize(ifstream &fin) // Read a Sudoku board from the input file.
@@ -69,14 +83,96 @@ void board::initialize(ifstream &fin) // Read a Sudoku board from the input file
 
     updateConflicts();    
 }
-
-void board::printConflicts() {
-    return;
+// Return the square number of cell i,j (counting from left to right,
+// top to bottom. Note that i and j each go from 1 to BoardSize
+int squareNumber(int i, int j)
+{
+    // Note that (int) i/SquareSize and (int) j/SquareSize are the x-y
+    // coordinates of the square that i,j is in.
+    return SquareSize * ((i-1)/SquareSize) + (j-1)/SquareSize + 1;
 }
 
-void board::updateConflicts() {
-    return;
+void board::updateConflicts()
+{
+    // Clear all conflicts first
+    for(int i = 1; i <= BoardSize; i++)
+    {
+        for(int j = 1; j <= BoardSize; j++)
+        {
+            rowConflicts[i][j].clear();
+            colConflicts[i][j].clear();
+            squareConflicts[i][j].clear();
+        }
+    }
+
+    // Iterate through the board and update conflicts
+    for(int i = 1; i <= BoardSize; i++) {
+        for (int j = 1; j <= BoardSize; j++) {
+            int val = value[i][j];
+            if (val != Blank) {
+                // Add conflicts to the respective matrices
+                rowConflicts[i][val].push_back(j);
+                colConflicts[j][val].push_back(i);
+                squareConflicts[squareNumber(i, j)][val].push_back(i * BoardSize + j);
+            }
+        }
+    }
 }
+void board::printConflicts()
+{
+    cout << "Row Conflicts:" << endl;
+    for (int i = 1; i <= BoardSize; i++) {
+        cout << "Row " << i << ": ";
+        for (int val = MinValue; val <= MaxValue; val++) {
+            // Iterate over possible values (1 to 9)
+            cout << val << ": ";
+            for (const int& j : rowConflicts[i][val]) {
+                // Print conflicting column indices for this row and value
+                cout << j << " ";
+            }
+            cout << "| ";
+        }
+        cout << endl;
+    }
+
+    cout << "Column Conflicts:" << endl;
+    for (int j = 1; j <= BoardSize; j++) {
+        cout << "Column " << j << ": ";
+        for (int val = MinValue; val <= MaxValue; val++) {
+            // Iterate over possible values (1 to 9)
+            cout << val << ": ";
+            for (const int& i : colConflicts[j][val]) {
+                // Print conflicting row indices for this column and value
+                cout << i << " ";
+            }
+            cout << "| ";
+        }
+        cout << endl;
+    }
+
+    cout << "Square Conflicts:" << endl;
+    for (int sq = 1; sq <= BoardSize; sq++) {
+        cout << "Square " << sq << ": ";
+        for (int val = MinValue; val <= MaxValue; val++) {
+            // Iterate over possible values (1 to 9)
+            cout << val << ": ";
+            for (const int& cell : squareConflicts[sq][val]) {
+                // Print conflicting cell indices for this square and value
+                int i = cell / BoardSize + 1; // Convert cell index to row index
+                int j = cell % BoardSize; // Convert cell index to column index
+                if (j == 0) {
+                    j = BoardSize;
+                    i--;
+                }
+                cout << "(" << i << "," << j << ") ";
+            }
+            cout << "| ";
+        }
+        cout << endl;
+    }
+}
+
+
 
 // Sets the cell at the given index to the given value
 void board::setCell(int i, int j, int val) {
@@ -88,14 +184,7 @@ void board::clearCell(int i, int j) {
     value[i][j] = Blank;
     updateConflicts();
 }
-// Return the square number of cell i,j (counting from left to right,
-// top to bottom. Note that i and j each go from 1 to BoardSize
-int squareNumber(int i, int j)
-{
-    // Note that (int) i/SquareSize and (int) j/SquareSize are the x-y
-    // coordinates of the square that i,j is in.
-    return SquareSize * ((i-1)/SquareSize) + (j-1)/SquareSize + 1;
-}
+
 
 ostream &operator<<(ostream &ostr, vector<int> &v) // Overloaded output operator for vector class.
 {
