@@ -119,6 +119,7 @@ void board::updateConflicts()
         }
     }
 }
+
 void board::printConflicts()
 {
     cout << "Row Conflicts:" << endl;
