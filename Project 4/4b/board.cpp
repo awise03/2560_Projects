@@ -20,33 +20,33 @@ int numSolutions = 0;
 // Stores the entire Sudoku board
 class board
 {
-    public:
-        board(int);
-        void clear();
-        void initialize(ifstream &fin);
-        void print();
-        bool isBlank(int, int);
-        void printConflicts();
-        void updateConflicts();
-        void clearCell(int, int);
-        void setCell(int, int, int);
-        bool checkSolved();
-        ValueType getCell(int, int);
-    private:
-        // The following matrices go from 1 to BoardSize in each
-        // dimension, i.e., they are each (BoardSize+1) * (BoardSize+1)
-        matrix<ValueType> value;
-        // Matrices to store conflict in rows, columns, and sqaures
-        matrix<vector<int> > rowConflicts;
-        matrix<vector<int> > colConflicts;
-        matrix<vector<int> > squareConflicts;
+public:
+    board(int);
+    void clear();
+    void initialize(ifstream &fin);
+    void print();
+    bool isBlank(int, int);
+    void printConflicts();
+    void updateConflicts();
+    void clearCell(int, int);
+    void setCell(int, int, int);
+    bool checkSolved();
+    ValueType getCell(int, int);
+private:
+    // The following matrices go from 1 to BoardSize in each
+    // dimension, i.e., they are each (BoardSize+1) * (BoardSize+1)
+    matrix<ValueType> value;
+    // Matrices to store conflict in rows, columns, and sqaures
+    matrix<vector<int> > rowConflicts;
+    matrix<vector<int> > colConflicts;
+    matrix<vector<int> > squareConflicts;
 };
 
 board::board(int sqSize)
-    : value(BoardSize+1,BoardSize+1),
-      rowConflicts(BoardSize + 1, BoardSize + 1),
-      colConflicts(BoardSize + 1, BoardSize + 1),
-      squareConflicts(BoardSize + 1, BoardSize + 1)// Board constructor
+        : value(BoardSize+1,BoardSize+1),
+          rowConflicts(BoardSize + 1, BoardSize + 1),
+          colConflicts(BoardSize + 1, BoardSize + 1),
+          squareConflicts(BoardSize + 1, BoardSize + 1)// Board constructor
 {
     clear();
 }
@@ -75,13 +75,13 @@ void board::initialize(ifstream &fin) // Read a Sudoku board from the input file
     for (int i = 1; i <= BoardSize; i++)
         for (int j = 1; j <= BoardSize; j++)
         {
-        fin >> ch;
-        // If the read char is not Blank
-        if (ch != '.')
-            setCell(i,j,ch-'0'); // Convert char to int
+            fin >> ch;
+            // If the read char is not Blank
+            if (ch != '.')
+                setCell(i,j,ch-'0'); // Convert char to int
         }
 
-    updateConflicts();    
+    updateConflicts();
 }
 
 // Return the square number of cell i,j (counting from left to right,
@@ -119,10 +119,7 @@ void board::updateConflicts()
         }
     }
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/main
 void board::printConflicts()
 {
     cout << "Row Conflicts:" << endl;
@@ -131,9 +128,9 @@ void board::printConflicts()
         for (int val = MinValue; val <= MaxValue; val++) {
             // Iterate over possible values (1 to 9)
             cout << val << ": ";
-            for (const int& j : rowConflicts[i][val]) {
+            for (size_t jIndex = 0; jIndex < rowConflicts[i][val].size(); ++jIndex) {
                 // Print conflicting column indices for this row and value
-                cout << j << " ";
+                cout << rowConflicts[i][val][jIndex] << " ";
             }
             cout << "| ";
         }
@@ -146,9 +143,9 @@ void board::printConflicts()
         for (int val = MinValue; val <= MaxValue; val++) {
             // Iterate over possible values (1 to 9)
             cout << val << ": ";
-            for (const int& i : colConflicts[j][val]) {
+            for (size_t iIndex = 0; iIndex < colConflicts[j][val].size(); ++iIndex) {
                 // Print conflicting row indices for this column and value
-                cout << i << " ";
+                cout << colConflicts[j][val][iIndex] << " ";
             }
             cout << "| ";
         }
@@ -161,8 +158,9 @@ void board::printConflicts()
         for (int val = MinValue; val <= MaxValue; val++) {
             // Iterate over possible values (1 to 9)
             cout << val << ": ";
-            for (const int& cell : squareConflicts[sq][val]) {
+            for (size_t cellIndex = 0; cellIndex < squareConflicts[sq][val].size(); ++cellIndex) {
                 // Print conflicting cell indices for this square and value
+                int cell = squareConflicts[sq][val][cellIndex];
                 int i = cell / BoardSize + 1; // Convert cell index to row index
                 int j = cell % BoardSize; // Convert cell index to column index
                 if (j == 0) {
@@ -176,6 +174,7 @@ void board::printConflicts()
         cout << endl;
     }
 }
+
 
 
 
@@ -193,9 +192,11 @@ void board::clearCell(int i, int j) {
 
 ostream &operator<<(ostream &ostr, vector<int> &v) // Overloaded output operator for vector class.
 {
-    for (int i = 0; i < v.size(); i++)
+    for (int i = 0; i < v.size(); i++) {
         ostr << v[i] << " ";
-    cout << endl;
+    }
+       return ostr;
+
 }
 
 ValueType board::getCell(int i, int j)
@@ -224,19 +225,19 @@ void board::print()
         if ((i-1) % SquareSize == 0)
         {
             cout << " -";
-	        for (int j = 1; j <= BoardSize; j++)
-	            cout << "---";
+            for (int j = 1; j <= BoardSize; j++)
+                cout << "---";
             cout << "-";
-	        cout << endl;
+            cout << endl;
         }
         for (int j = 1; j <= BoardSize; j++)
         {
-	        if ((j-1) % SquareSize == 0)
-	            cout << "|";
+            if ((j-1) % SquareSize == 0)
+                cout << "|";
             if (!isBlank(i,j))
                 cout << " " << getCell(i,j) << " ";
-        else
-            cout << "   ";
+            else
+                cout << "   ";
         }
         cout << "|";
         cout << endl;
@@ -264,31 +265,4 @@ bool board::checkSolved() {
     return true;
 }
 
-int main()
-    {
-    ifstream fin;
-    // Read the sample grid from the file.
-    string fileName = "sudoku.txt";
-    fin.open(fileName.c_str());
-    if (!fin)
-    {
-        cerr << "Cannot open " << fileName << endl;
-        exit(1);
-    }
-    try
-    {
-        board b1(SquareSize);
 
-        while (fin && fin.peek() != 'Z')
-        {
-            b1.initialize(fin);
-            b1.print();
-            b1.printConflicts();
-        }
-    }
-    catch (indexRangeError &ex)
-    {
-        cout << ex.what() << endl;
-        exit(1);
-    }
-}

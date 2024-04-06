@@ -8,10 +8,10 @@
 #include "board.cpp"
 
 // Helper function to find the next empty cell on the board
-bool findEmptyCell(const board& b, int& row, int& col);
+bool findEmptyCell(board b, int& row, int& col);
 
 // Helper function to check if a value is valid for a given cell
-bool isValidValue(const board& b, int row, int col, int value);
+bool isValidValue(board b, int row, int col, int value);
 
 // Recursive function to solve the puzzle
 bool solveSudoku(board& b, int& recursiveCallCount);

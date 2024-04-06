@@ -1,7 +1,7 @@
 //
 // Created by Jackymora Isa on 4/5/24.
 //
-#include "sudoku_solver.h"
+#include "sudoku_solver.cpp"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
