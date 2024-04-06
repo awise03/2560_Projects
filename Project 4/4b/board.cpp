@@ -53,10 +53,10 @@ class board
 };
 
 board::board(int sqSize)
-    : value(BoardSize+1,BoardSize+1),
-      rowConflicts(BoardSize + 1, BoardSize + 1),
-      colConflicts(BoardSize + 1, BoardSize + 1),
-      squareConflicts(BoardSize + 1, BoardSize + 1)// Board constructor
+        : value(BoardSize+1,BoardSize+1),
+          rowConflicts(BoardSize + 1, BoardSize + 1),
+          colConflicts(BoardSize + 1, BoardSize + 1),
+          squareConflicts(BoardSize + 1, BoardSize + 1)// Board constructor
 {
     clear();
 }
@@ -87,13 +87,13 @@ void board::initialize(ifstream &fin) // Read a Sudoku board from the input file
     for (int i = 1; i <= BoardSize; i++)
         for (int j = 1; j <= BoardSize; j++)
         {
-        fin >> ch;
-        // If the read char is not Blank
-        if (ch != '.')
-            setCell(i,j,ch-'0'); // Convert char to int
+            fin >> ch;
+            // If the read char is not Blank
+            if (ch != '.')
+                setCell(i,j,ch-'0'); // Convert char to int
         }
 
-    updateConflicts();    
+    updateConflicts();
 }
 
 // Return the square number of cell i,j (counting from left to right,
@@ -184,9 +184,11 @@ bool board::isValid(int r, int c, int val) {
 
 ostream &operator<<(ostream &ostr, vector<int> &v) // Overloaded output operator for vector class.
 {
-    for (int i = 0; i < v.size(); i++)
+    for (int i = 0; i < v.size(); i++) {
         ostr << v[i] << " ";
-    cout << endl;
+    }
+       return ostr;
+
 }
 
 ValueType board::getCell(int i, int j)
@@ -226,19 +228,19 @@ void board::print()
         if ((i-1) % SquareSize == 0)
         {
             cout << " -";
-	        for (int j = 1; j <= BoardSize; j++)
-	            cout << "---";
+            for (int j = 1; j <= BoardSize; j++)
+                cout << "---";
             cout << "-";
-	        cout << endl;
+            cout << endl;
         }
         for (int j = 1; j <= BoardSize; j++)
         {
-	        if ((j-1) % SquareSize == 0)
-	            cout << "|";
+            if ((j-1) % SquareSize == 0)
+                cout << "|";
             if (!isBlank(i,j))
                 cout << " " << getCell(i,j) << " ";
-        else
-            cout << "   ";
+            else
+                cout << "   ";
         }
         cout << "|";
         cout << endl;
