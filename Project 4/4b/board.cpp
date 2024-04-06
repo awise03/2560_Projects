@@ -39,7 +39,7 @@ class board
         bool solveBoard();
         int getTotalCalls();
     private:
-        int recursiveCalls;
+        int recursiveCalls = 0;
         int totalCalls = 0;
         int currRow;
         int currCol;
@@ -92,7 +92,7 @@ void board::initialize(ifstream &fin) // Read a Sudoku board from the input file
         if (ch != '.')
             setCell(i,j,ch-'0'); // Convert char to int
         }
-
+    recursiveCalls = 0;
     updateConflicts();    
 }
 
@@ -165,7 +165,6 @@ void board::setCell(int i, int j, int val) {
 
 void board::clearCell(int i, int j) {
     value[i][j] = Blank;
-    updateConflicts();
 }
 
 bool board::isValid(int r, int c, int val) {
@@ -254,21 +253,21 @@ void board::print()
 
 bool board::solveBoard() {
     recursiveCalls++;
-    totalCalls++;
+    
 
 
     if(checkSolved()) {
-        cout << "Total Recursive Calls: " << recursiveCalls << endl;
+        cout << " Recursive Calls: " << recursiveCalls << endl;
+        totalCalls += recursiveCalls;
+        cout << " Total Calls: " << totalCalls << endl;
         numSolutions++;
-        print();
         return true;
     }
-    
     if(findBlank()) {
         for(int val = 1; val <= BoardSize; val++) {
             if(isValid(currRow, currCol, val)) {
                 setCell(currRow, currCol, val);
-                updateSpecificConflict(currRow, currCol, true);
+                
 
                 if(solveBoard()) {
                     return true;
@@ -292,9 +291,9 @@ bool board::checkSolved() {
             if(isBlank(i, j)) {
                 return false;
             }
+
         }
-    }
-    print(); 
+    } 
     
     return true;
 }
