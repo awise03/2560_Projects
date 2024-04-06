@@ -1,7 +1,7 @@
 #ifndef EXCEPTION_CLASSES
 #define EXCEPTION_CLASSES
 
-#include <sstream>
+#include <strstream>
 #include <string>
 
 using namespace std;
@@ -46,18 +46,20 @@ class rangeError: public baseException
 };
 
 // index out of range
-class indexRangeError: public baseException {
-public:
-    indexRangeError(const string& msg, int i, int size) : baseException() {
-        ostringstream indexErr;
+class indexRangeError: public baseException
+{
+	public:
+		indexRangeError(const string& msg, int i, int size):
+			baseException()
+		{
+			char indexString[80];
+			ostrstream indexErr(indexString, 80);
 
-        // Construct the detailed error message
-        indexErr << msg << "  index " << i << "  size = " << size;
-
-        // Convert the stringstream to a string and assign it to msgString
-        // Assuming msgString is accessible and intended for storing the error message
-        msgString = indexErr.str();
-    }
+			indexErr << msg << "  index " << i << "  size = " << size << ends;
+			// indexRangeError can modify msgString, since it is in
+			// the protected section of baseException
+			msgString = indexString;
+		}
 };
 
 // attempt to erase from an empty container
@@ -113,7 +115,7 @@ class dateError: public baseException
 			baseException()
 		{
 			char dateStr[80];
-			ostringstream dateErr(dateStr, 80);
+			ostrstream dateErr(dateStr, 80);
 
 			dateErr << first << ' ' << v << ' ' << last << ends;
 			// dateError can modify msgString, since it is in
@@ -139,7 +141,7 @@ class fileOpenError: public baseException
 			baseException()
 		{
 			char errorStr[80];
-			ostringstream fileErr(errorStr, 80);
+			ostrstream fileErr(errorStr, 80);
 
 			fileErr << "Cannot open \"" << fname << "\"" << ends;
 			// fileOpenError can modify msgString, since it is in
