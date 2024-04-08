@@ -29,7 +29,7 @@ public:
     void printConflicts();
     void updateConflicts();
     void updateSpecificConflict(int, int, int, bool);
-    void clearCell(int &, int &);
+    void clearCell(int, int, int);
     bool findBlank(int& r, int& c);
     void setCell(int, int, int);
     bool checkSolved();
@@ -168,12 +168,12 @@ void board::printConflicts()
 // Sets the cell at the given index to the given value
 void board::setCell(int i, int j, int val) {
     value[i][j] = val;
-    updateConflicts();
+    updateSpecificConflict(i, j, val, true);
 }
 
-void board::clearCell(int &i, int &j) {
+void board::clearCell(int i, int j, int val) {
     value[i][j] = Blank;
-    updateConflicts();
+    updateSpecificConflict(i, j, val, false);
     currRow = 1;
     currCol = 1;
 }
@@ -184,7 +184,6 @@ bool board::isValid(int row, int col, int val) {
     }
     return true;
 }
-
 
 ostream &operator<<(ostream &ostr, vector<int> &v) // Overloaded output operator for vector class.
 {
@@ -223,7 +222,6 @@ bool board::findBlank(int& row, int& col) {
     }
     return false;
 }
-
 
 void board::print()
 // Prints the current board.
@@ -281,7 +279,7 @@ bool board::solveBoard() {
             if (solveBoard()) {
                 return true;
             }
-            clearCell(row, col); // Reset cell on backtrack
+            clearCell(row, col, val); // Reset cell on backtrack
         }
     }
 
@@ -290,7 +288,7 @@ bool board::solveBoard() {
 
 
 bool board::checkSolved() {
-    updateConflicts();
+    //updateConflicts();
 
     for(int i = 1; i <= BoardSize; i++) {
         for(int j = 1; j <= BoardSize; j++) {
