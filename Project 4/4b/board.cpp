@@ -259,17 +259,12 @@ void board::print()
 
 bool board::solveBoard() {
     totalCalls++; // Update this to track the total number of calls
-
-    if (checkSolved()) {
-        numSolutions++; // Increment numSolutions if a solution is found
-        print();
-        return true;
-    }
+    recursiveCalls++; // Update this to track the number of recursive requests
 
     int row, col;
     if (!findBlank(row, col)) {
         numSolutions++; // Increment numSolutions if a solution is found
-        print();
+        cout << "Found in " << recursiveCalls << " calls\n"; 
         return true; // If no blank cell is found, the board is solved.
     }
 
@@ -289,7 +284,6 @@ bool board::solveBoard() {
 
 bool board::checkSolved() {
     //updateConflicts();
-
     for(int i = 1; i <= BoardSize; i++) {
         for(int j = 1; j <= BoardSize; j++) {
             if(isBlank(i, j)) {
@@ -325,7 +319,7 @@ int main()
             b1.initialize(fin);
             if(b1.solveBoard()) {
                 cout << "Solution found:\n";
-                // b1.print();
+                b1.print();
             }
         }
         int total = b1.getTotalCalls();
