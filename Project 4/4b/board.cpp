@@ -29,7 +29,7 @@ public:
     void printConflicts();
     void updateConflicts();
     void updateSpecificConflict(int, int, int, bool);
-    void clearCell(int, int);
+    void clearCell(int &, int &);
     bool findBlank(int& r, int& c);
     void setCell(int, int, int);
     bool checkSolved();
@@ -108,6 +108,7 @@ void board::updateConflicts() {
     // Reset conflicts before updating
     for (int i = 1; i <= BoardSize; i++) {
         for (int j = 1; j <= MaxValue; j++) {
+            int sqNum = squareNumber(i, j);
             rowConflicts[i][j] = colConflicts[i][j] = squareConflicts[i][j] = false;
         }
     }
@@ -170,8 +171,11 @@ void board::setCell(int i, int j, int val) {
     updateConflicts();
 }
 
-void board::clearCell(int i, int j) {
+void board::clearCell(int &i, int &j) {
     value[i][j] = Blank;
+    updateConflicts();
+    currRow = 1;
+    currCol = 1;
 }
 
 bool board::isValid(int row, int col, int val) {
@@ -260,12 +264,14 @@ bool board::solveBoard() {
 
     if (checkSolved()) {
         numSolutions++; // Increment numSolutions if a solution is found
+        print();
         return true;
     }
 
     int row, col;
     if (!findBlank(row, col)) {
         numSolutions++; // Increment numSolutions if a solution is found
+        print();
         return true; // If no blank cell is found, the board is solved.
     }
 
@@ -305,7 +311,7 @@ int main()
 {
     ifstream fin;
     // Read the sample grid from the file.
-    string fileName = "/Users/jackymoraisa/CLionProjects/2560_Projects/Project 4/4b/sudoku.txt";
+    string fileName = "sudoku.txt";
     fin.open(fileName.c_str());
     if (!fin)
     {
@@ -321,7 +327,7 @@ int main()
             b1.initialize(fin);
             if(b1.solveBoard()) {
                 cout << "Solution found:\n";
-                b1.print();
+                // b1.print();
             }
         }
         int total = b1.getTotalCalls();
