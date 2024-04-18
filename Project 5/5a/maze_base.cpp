@@ -20,6 +20,8 @@ class maze {
         int getMap(int i, int j) const;
         void mapMazeToGraph(maze &m, graph &g);
 
+        void findPathRecursive();
+
     private:
         int rows; // number of rows in the maze
         int cols; // number of columns in the maze
@@ -31,12 +33,25 @@ class maze {
 
 // Set mapping from maze cell (i, j) to graph node n
 void maze::setMap(int i, int j, int n) {
-
+    map[i][j] = n;
 }
 
 // Return mapping of maze cell (i, j) in the graph.
 int maze::getMap(int i, int j) const {
+    return map[i][j];
+}
 
+// Create a graph g that represents the legal moves in the maze m.
+void maze::mapMazeToGraph(maze &m, graph &g) {
+    edge edge1;
+    for(int i = 0; i < value.rows(); i++) {
+        for(int j = 0; j < value.cols(); j++) {
+            if(value[i][j]) {
+                map[i][j] = g.addNode();
+                edge1.setEdge(i,j,0);
+            }
+        }    
+    }
 }
 
 // Initializes a maze by reading values from fin. Assumes that the
@@ -95,10 +110,7 @@ bool maze::isLegal(int i, int j) {
 
     return value[i][j];
 }
-// Create a graph g that represents the legal moves in the maze m.
-void maze::mapMazeToGraph(maze &m, graph &g) {
 
-}
 
 int main() {
     char x;
