@@ -43,14 +43,22 @@ int maze::getMap(int i, int j) const {
 
 // Create a graph g that represents the legal moves in the maze m.
 void maze::mapMazeToGraph(maze &m, graph &g) {
-    edge edge1;
-    for(int i = 0; i < value.rows(); i++) {
-        for(int j = 0; j < value.cols(); j++) {
-            if(value[i][j]) {
-                map[i][j] = g.addNode();
-                edge1.setEdge(i,j,0);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (value[i][j]) {
+                int nodeId = g.addNode();  // Add node for each passable cell
+                setMap(i, j, nodeId);
+
+                // Connect to right neighbor
+                if (j < cols - 1 && value[i][j+1]) {
+                    g.addEdge(nodeId, getMap(i, j+1));
+                }
+                // Connect to down neighbor
+                if (i < rows - 1 && value[i+1][j]) {
+                    g.addEdge(nodeId, getMap(i+1, j));
+                }
             }
-        }    
+        }
     }
 }
 
@@ -105,18 +113,19 @@ void maze::print(int goalI, int goalJ, int currI, int currJ) {
 
 // Return the value stored at the (i,j) entry in the maze.
 bool maze::isLegal(int i, int j) {
-    if (i < 0 || i > rows || j < 0 || j > cols)
+    if (i < 0 || i >= rows || j < 0 || j >= cols)
         throw rangeError("Bad value in maze::isLegal");
 
     return value[i][j];
 }
 
 
+
 int main() {
     char x;
     ifstream fin;
     // Read the maze from the file.
-    string fileName = "maze1.txt";
+    string fileName = "/Users/jackymoraisa/CLionProjects/2560_Projects/2560_Projects/Project 5/5a/maze1.txt";
     fin.open(fileName.c_str());
     if (!fin) {
         cerr << "Cannot open " << fileName << endl;
