@@ -20,7 +20,8 @@ class maze {
         int getMap(int i, int j) const;
         void mapMazeToGraph(maze &m, graph &g);
 
-        void findPathRecursive();
+        int findNextNode(graph &g);
+        void findPathRecursive(graph &g, int junction, int j);
 
     private:
         int rows; // number of rows in the maze
@@ -28,6 +29,7 @@ class maze {
         
         matrix<bool> value;
         matrix<int> map;    // Mapping from maze (i, j) value to node index values
+        matrix<bool> visited; 
 
 };
 
@@ -57,9 +59,29 @@ void maze::mapMazeToGraph(maze &m, graph &g) {
                 if (i < rows - 1 && value[i+1][j]) {
                     g.addEdge(nodeId, getMap(i+1, j));
                 }
+                
             }
         }
     }
+}
+
+int maze::findNextNode(graph &g) {
+    for(int r = 0; r < rows; r++) {
+        for(int c = 0; c < cols; c++) {
+            if(value[r][c] && !g.isVisited(map[r][c])) {
+                return map[r][c];
+            }
+        }
+    }
+}
+
+void maze::findPathRecursive(graph &g, int junction, int j) {
+    if(g.allNodesVisited()) {
+        return;
+    }
+    int nextNode = findNextNode(g);
+
+    
 }
 
 // Initializes a maze by reading values from fin. Assumes that the
@@ -125,7 +147,7 @@ int main() {
     char x;
     ifstream fin;
     // Read the maze from the file.
-    string fileName = "/Users/jackymoraisa/CLionProjects/2560_Projects/2560_Projects/Project 5/5a/maze1.txt";
+    string fileName = "maze1.txt";
     fin.open(fileName.c_str());
     if (!fin) {
         cerr << "Cannot open " << fileName << endl;
@@ -136,7 +158,9 @@ int main() {
         graph g;
         while (fin && fin.peek() != 'Z') {
             maze m(fin);
+            m.mapMazeToGraph(m, g);
         }
+        cout << g << endl;
     }
 
     catch (indexRangeError &ex) {
@@ -145,4 +169,6 @@ int main() {
     catch (rangeError &ex) {
         cout << ex.what() << endl; exit(1);
     }
+
+    
 }
