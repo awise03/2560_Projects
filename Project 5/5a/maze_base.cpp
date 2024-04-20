@@ -75,7 +75,7 @@ int maze::findNextNode(graph &g) {
     }
 }
 
-void maze::findPathRecursive(graph &g, int junction, int j) {
+void maze::findPathRecursive(graph &g, int junction, int moves) {
     if(g.allNodesVisited()) {
         return;
     }
