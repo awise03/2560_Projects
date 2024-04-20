@@ -21,7 +21,7 @@ class maze {
         void mapMazeToGraph(maze &m, graph &g);
 
         int findNextNode(graph &g);
-        void findPathRecursive(graph &g, int junction, int j);
+        bool findPathRecursive(graph &g, int next, int i, int j);
 
     private:
         int rows; // number of rows in the maze
@@ -29,7 +29,6 @@ class maze {
         
         matrix<bool> value;
         matrix<int> map;    // Mapping from maze (i, j) value to node index values
-        matrix<bool> visited; 
 
 };
 
@@ -55,6 +54,17 @@ void maze::mapMazeToGraph(maze &m, graph &g) {
                 if (j < cols - 1 && value[i][j+1]) {
                     g.addEdge(nodeId, getMap(i, j+1));
                 }
+
+                // Connect to left neighbor
+                if(j > 0 && value[i][j-1]) {
+                    g.addEdge(nodeId, getMap(i, j-1));
+                }
+
+                // Connect to up neighbor
+                if(i > 0 && value[i-1][j]){
+                    g.addEdge(nodeId, getMap(i-1,j));
+                }
+                
                 // Connect to down neighbor
                 if (i < rows - 1 && value[i+1][j]) {
                     g.addEdge(nodeId, getMap(i+1, j));
@@ -75,13 +85,77 @@ int maze::findNextNode(graph &g) {
     }
 }
 
-void maze::findPathRecursive(graph &g, int junction, int moves) {
+bool maze::findPathRecursive(graph &g, int next, int r, int c) {
     if(g.allNodesVisited()) {
-        return;
+        return false;
     }
-    int nextNode = findNextNode(g);
 
+    // Left direction
     
+    if((c - 1) >= 0 && value[r][c-1]) {
+        cout << "entered left" << endl;
+        if(!g.isVisited(map[r][c], map[r][c-1])){
+            
+            next = map[r][c-1];
+            g.visit(map[r][c], map[r][c-1]);
+
+            if(findPathRecursive(g, next, r, c-1)) {
+                cout << "Go left!" << endl;
+                return true;
+            }
+        }
+        
+    }
+    // Right direction
+    if((c+1) >= cols && value[r][c+1]){
+        cout << "entered right" << endl;
+        if(!g.isVisited(map[r][c], map[r][c+1])){
+            
+            next = map[r][c+1];
+            g.visit(map[r][c], map[r][c+1]);
+
+            if(findPathRecursive(g, next, r, c+1)) {
+                cout << "Go right!" << endl;
+                return true;
+            }
+        }
+
+    }
+
+    // Up direction 
+    if((r - 1) >= 0 && value[r-1][c]) {
+        cout << "entered up" << endl;
+        if(!g.isVisited(map[r][c], map[r-1][c])) {
+            
+            next = map[r-1][c];
+            g.visit(map[r][c], map[r-1][c]);
+
+            if(findPathRecursive(g, next, r-1, c)) {
+                cout << "Go up!" << endl;
+                return true;
+            }
+        }
+       
+
+    }
+
+    // Down direction
+    if((r + 1) <= rows && value[r+1][c]) {
+        cout << "entered down" << endl;
+        if(!g.isVisited(getMap(r,c), getMap(r+1, c)))    {
+             cout << "passed down" << endl;
+            next = map[r+1][c];
+            g.visit(getMap(r,c), getMap(r+1, c));
+
+            if(findPathRecursive(g, next, r+1, c)) {
+                cout << "Go down!" << endl;
+                return true;
+            }
+        }
+    }
+    cout << "failed" << endl;
+    g.visit(map[r][c]);
+    return false;
 }
 
 // Initializes a maze by reading values from fin. Assumes that the
@@ -159,6 +233,7 @@ int main() {
         while (fin && fin.peek() != 'Z') {
             maze m(fin);
             m.mapMazeToGraph(m, g);
+            //m.findPathRecursive(g, 0, 0, 0);
         }
         cout << g << endl;
     }
@@ -170,5 +245,6 @@ int main() {
         cout << ex.what() << endl; exit(1);
     }
 
+    
     
 }
