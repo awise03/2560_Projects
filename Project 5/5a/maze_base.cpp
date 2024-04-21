@@ -21,6 +21,7 @@ class maze {
         void mapMazeToGraph(maze &m, graph &g);
 
         bool findPathRecursive(graph &g, int next, int i, int j);
+        void findPathNonRecursive();
         void printPath();
     private:
         int rows; // number of rows in the maze
@@ -99,6 +100,7 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
     }
 
     if(g.allNodesVisited()) {
+        cout << "No Path Exists" << endl;
         return false;
     }
 
@@ -233,7 +235,7 @@ int main() {
     char x;
     ifstream fin;
     // Read the maze from the file.
-    string fileName = "maze3.txt";
+    string fileName = "maze3-1.txt";
     fin.open(fileName.c_str());
     if (!fin) {
         cerr << "Cannot open " << fileName << endl;
