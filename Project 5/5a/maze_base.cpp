@@ -20,15 +20,15 @@ class maze {
         int getMap(int i, int j) const;
         void mapMazeToGraph(maze &m, graph &g);
 
-        int findNextNode(graph &g);
         bool findPathRecursive(graph &g, int next, int i, int j);
-
+        void printPath();
     private:
         int rows; // number of rows in the maze
         int cols; // number of columns in the maze
         
         matrix<bool> value;
         matrix<int> map;    // Mapping from maze (i, j) value to node index values
+        vector<string> paths; // Vector of pathing instructions 
 
 };
 
@@ -44,30 +44,38 @@ int maze::getMap(int i, int j) const {
 
 // Create a graph g that represents the legal moves in the maze m.
 void maze::mapMazeToGraph(maze &m, graph &g) {
+    // Initialize map with all available spots
+    for(int i = 0; i < rows; i++) {
+        for(int j = 0; j < cols; j++) {
+            if(value[i][j]) {
+                setMap(i, j, g.addNode());
+            }
+        }
+    }
+
+    
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             if (value[i][j]) {
-                int nodeId = g.addNode();  // Add node for each passable cell
-                setMap(i, j, nodeId);
 
                 // Connect to right neighbor
                 if (j < cols - 1 && value[i][j+1]) {
-                    g.addEdge(nodeId, getMap(i, j+1));
+                    g.addEdge(getMap(i, j), getMap(i, j+1));
                 }
 
                 // Connect to left neighbor
                 if(j > 0 && value[i][j-1]) {
-                    g.addEdge(nodeId, getMap(i, j-1));
+                    g.addEdge(getMap(i, j), getMap(i, j-1));
                 }
 
                 // Connect to up neighbor
                 if(i > 0 && value[i-1][j]){
-                    g.addEdge(nodeId, getMap(i-1,j));
+                    g.addEdge(getMap(i, j), getMap(i-1,j));
                 }
                 
                 // Connect to down neighbor
                 if (i < rows - 1 && value[i+1][j]) {
-                    g.addEdge(nodeId, getMap(i+1, j));
+                    g.addEdge(getMap(i, j), getMap(i+1, j));
                 }
                 
             }
@@ -75,63 +83,83 @@ void maze::mapMazeToGraph(maze &m, graph &g) {
     }
 }
 
-int maze::findNextNode(graph &g) {
-    for(int r = 0; r < rows; r++) {
-        for(int c = 0; c < cols; c++) {
-            if(value[r][c] && !g.isVisited(map[r][c])) {
-                return map[r][c];
-            }
-        }
+// Prints the paths stored within the vector, paths
+void maze::printPath() {    
+    for(int i = paths.size(); i >= 0; i--) {
+        cout << paths[i] << endl;
     }
 }
 
+// Recursively solves the maze using DFS 
 bool maze::findPathRecursive(graph &g, int next, int r, int c) {
+    print(rows, cols, r, c);
+    if(r == rows-1 && c == cols-1) {
+        cout << "finished" << endl;
+        return true;
+    }
+
     if(g.allNodesVisited()) {
         return false;
     }
 
+    // Right direction
+    if((c+1) < cols && value[r][c+1]) { // Checks to see if we can move in this direction
+        
+        if(!g.isVisited(getMap(r, c+1))) { // Checks to see if the node to the right is unvisited 
+            
+            next = map[r][c+1];
+            g.visit(getMap(r,c)); // Mark node as visited
+
+            if(findPathRecursive(g, next, r, c+1)) { // Recursively call with a traversal to the right
+                paths.push_back("Go right!");
+                return true;
+            }
+        }
+
+    }
+
+    // Down direction
+    if((r + 1) < rows && value[r+1][c]) { // Checks to see if we can move in this direction
+
+        if(!g.isVisited(getMap(r+1, c))) { // Checks to see if the node below is unvisited 
+
+            next = map[r+1][c];
+            g.visit(getMap(r,c)); // Mark node as visited
+
+            if(findPathRecursive(g, next, r+1, c)) { // Recursively call with a traversal down
+                paths.push_back("Go down!");
+                return true;
+            }
+        }
+    }
+
     // Left direction
-    
-    if((c - 1) >= 0 && value[r][c-1]) {
-        cout << "entered left" << endl;
-        if(!g.isVisited(map[r][c], map[r][c-1])){
+    if((c - 1) >= 0 && value[r][c-1]) { // Checks to see if we can move in this direction
+        //cout << "entered left" << endl;
+        if(!g.isVisited(getMap(r, c-1))){ // Checks to see if the node to the left is unvisited 
             
             next = map[r][c-1];
-            g.visit(map[r][c], map[r][c-1]);
+            g.visit(getMap(r,c)); // Mark node as visited
 
-            if(findPathRecursive(g, next, r, c-1)) {
-                cout << "Go left!" << endl;
+            if(findPathRecursive(g, next, r, c-1)) { // Recursively call with a traversal to the left
+                paths.push_back("Go left!");
                 return true;
             }
         }
         
     }
-    // Right direction
-    if((c+1) >= cols && value[r][c+1]){
-        cout << "entered right" << endl;
-        if(!g.isVisited(map[r][c], map[r][c+1])){
-            
-            next = map[r][c+1];
-            g.visit(map[r][c], map[r][c+1]);
 
-            if(findPathRecursive(g, next, r, c+1)) {
-                cout << "Go right!" << endl;
-                return true;
-            }
-        }
-
-    }
 
     // Up direction 
-    if((r - 1) >= 0 && value[r-1][c]) {
-        cout << "entered up" << endl;
-        if(!g.isVisited(map[r][c], map[r-1][c])) {
+    if((r - 1) >= 0 && value[r-1][c]) { // Checks to see if we can move in this direction
+
+        if(!g.isVisited(getMap(r-1, c))) { // Checks to see if the node above is unvisited 
             
             next = map[r-1][c];
-            g.visit(map[r][c], map[r-1][c]);
+            g.visit(getMap(r,c)); // Mark node as visited
 
-            if(findPathRecursive(g, next, r-1, c)) {
-                cout << "Go up!" << endl;
+            if(findPathRecursive(g, next, r-1, c)) { // Recursively call with a traversal up
+                paths.push_back("Go up!");
                 return true;
             }
         }
@@ -139,21 +167,7 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
 
     }
 
-    // Down direction
-    if((r + 1) <= rows && value[r+1][c]) {
-        cout << "entered down" << endl;
-        if(!g.isVisited(getMap(r,c), getMap(r+1, c)))    {
-             cout << "passed down" << endl;
-            next = map[r+1][c];
-            g.visit(getMap(r,c), getMap(r+1, c));
 
-            if(findPathRecursive(g, next, r+1, c)) {
-                cout << "Go down!" << endl;
-                return true;
-            }
-        }
-    }
-    cout << "failed" << endl;
     g.visit(map[r][c]);
     return false;
 }
@@ -215,13 +229,11 @@ bool maze::isLegal(int i, int j) {
     return value[i][j];
 }
 
-
-
 int main() {
     char x;
     ifstream fin;
     // Read the maze from the file.
-    string fileName = "maze1.txt";
+    string fileName = "maze2.txt";
     fin.open(fileName.c_str());
     if (!fin) {
         cerr << "Cannot open " << fileName << endl;
@@ -233,9 +245,10 @@ int main() {
         while (fin && fin.peek() != 'Z') {
             maze m(fin);
             m.mapMazeToGraph(m, g);
-            //m.findPathRecursive(g, 0, 0, 0);
+            m.findPathRecursive(g, 0, 0, 0);
+            m.printPath();
         }
-        cout << g << endl;
+        //cout << g << endl;
     }
 
     catch (indexRangeError &ex) {
