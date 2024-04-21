@@ -104,13 +104,14 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
         return false;
     }
 
+    g.visit(map[r][c]); // Mark node as visited
+
     // Right direction
     if((c+1) < cols && value[r][c+1]) { // Checks to see if we can move in this direction
         
         if(!g.isVisited(getMap(r, c+1))) { // Checks to see if the node to the right is unvisited 
             
             next = map[r][c+1];
-            g.visit(getMap(r,c)); // Mark node as visited
 
             if(findPathRecursive(g, next, r, c+1)) { // Recursively call with a traversal to the right
                 paths.push_back("Go right!");
@@ -126,7 +127,6 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
         if(!g.isVisited(getMap(r+1, c))) { // Checks to see if the node below is unvisited 
 
             next = map[r+1][c];
-            g.visit(getMap(r,c)); // Mark node as visited
 
             if(findPathRecursive(g, next, r+1, c)) { // Recursively call with a traversal down
                 paths.push_back("Go down!");
@@ -141,7 +141,6 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
         if(!g.isVisited(getMap(r, c-1))){ // Checks to see if the node to the left is unvisited 
             
             next = map[r][c-1];
-            g.visit(getMap(r,c)); // Mark node as visited
 
             if(findPathRecursive(g, next, r, c-1)) { // Recursively call with a traversal to the left
                 paths.push_back("Go left!");
@@ -151,14 +150,12 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
         
     }
 
-
     // Up direction 
     if((r - 1) >= 0 && value[r-1][c]) { // Checks to see if we can move in this direction
 
         if(!g.isVisited(getMap(r-1, c))) { // Checks to see if the node above is unvisited 
             
             next = map[r-1][c];
-            g.visit(getMap(r,c)); // Mark node as visited
 
             if(findPathRecursive(g, next, r-1, c)) { // Recursively call with a traversal up
                 paths.push_back("Go up!");
@@ -170,7 +167,7 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
     }
 
 
-    g.visit(map[r][c]);
+    
     return false;
 }
 
