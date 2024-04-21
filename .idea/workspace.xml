@@ -18,31 +18,20 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e98e4fc-c7f7-43b2-a074-f983c0099058" name="Changes" comment="adding implementation to playFlip function">
+    <list default="true" id="3e98e4fc-c7f7-43b2-a074-f983c0099058" name="Changes" comment="added minor part to printpath">
+      <change afterPath="$PROJECT_DIR$/Project 5/5b/d_except.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project 5/5b/d_matrix.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project 5/5b/graph.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project 5/5b/maze1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project 5/5b/maze2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project 5/5b/maze3-1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project 5/5b/maze_base.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maze_base" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project 2/2b/card.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 2/2b/card.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project 2/2b/card.h" beforeDir="false" afterPath="$PROJECT_DIR$/Project 2/2b/card.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project 2/2b/deck.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 2/2b/deck.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project 2/2b/deck.h" beforeDir="false" afterPath="$PROJECT_DIR$/Project 2/2b/deck.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-2867cfd8ed852d4e2b25.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-3eda6dddad757acb7309.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-cb853424f89f04062a49.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-02-04T21-55-16-0884.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-2560_Projects-Debug-81e8a03a206b48fdbe36.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-6f619f6ed2b9cb9d1698.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2560_Projects.dir/Project_1/code.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2560_Projects.dir/Project_1/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2560_Projects.dir/Project_1/mastermind.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2560_Projects.dir/Project_1/response.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.27.8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.27.8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.27.8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.27.8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project 4/4b/board.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Project 4/4b/board.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project 4/4b/d_matrix.h" beforeDir="false" afterPath="$PROJECT_DIR$/Project 4/4b/d_matrix.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +43,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="sudoku" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -70,6 +65,9 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2023" />
@@ -84,38 +82,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C/C++ File.main.cpp.executor&quot;: &quot;Run&quot;,
-    &quot;CMake Application.2560_Projects.executor&quot;: &quot;Run&quot;,
-    &quot;CMake Application.main.executor&quot;: &quot;Run&quot;,
-    &quot;CMake Debug.Project.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jackymoraisa/CLionProjects/2560_Projects/2560_Projects/Project 2/2b&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CLionExternalConfigurable&quot;,
-    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C/C++ File.board.cpp.executor": "Run",
+    "C/C++ File.main.cpp (1).executor": "Run",
+    "C/C++ File.main.cpp (2).executor": "Run",
+    "C/C++ File.main.cpp.executor": "Run",
+    "C/C++ File.maze_base.cpp (1).executor": "Run",
+    "C/C++ File.maze_base.cpp.executor": "Run",
+    "CMake Application.2560_Projects.executor": "Run",
+    "CMake Application.main.executor": "Run",
+    "CMake Debug.Project.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/jackymoraisa/CLionProjects/2560_Projects/2560_Projects/Project 5/5b",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CLionExternalConfigurable",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Project 2/2b" />
+      <recent name="$PROJECT_DIR$/Project 5/5b" />
+      <recent name="$PROJECT_DIR$/Project 4/4b" />
+      <recent name="$PROJECT_DIR$/Project 4" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Project 4/4b" />
     </key>
   </component>
-  <component name="RunManager" selected="C/C++ File.main.cpp">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+  <component name="RunManager" selected="C/C++ File.maze_base.cpp (1)">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/Project 1/main.cpp" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -125,19 +139,69 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="main.cpp (1)" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2560_Projects" TARGET_NAME="main.cpp" CONFIG_NAME="main.cpp">
+      <option name="sourceFile" value="Project 4/4b/main.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main.cpp (1)" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2560_Projects" TARGET_NAME="main.cpp" CONFIG_NAME="main.cpp">
+      <option name="sourceFile" value="Project 4/4b/main.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main.cpp (2)" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2560_Projects" TARGET_NAME="main.cpp">
+      <option name="sourceFile" value="Project 4/4b/puzzle_solver.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main.cpp (2)" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2560_Projects" TARGET_NAME="main.cpp">
+      <option name="sourceFile" value="Project 4/4b/puzzle_solver.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="main.cpp" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2560_Projects" TARGET_NAME="main.cpp" CONFIG_NAME="main.cpp">
-      <option name="sourceFile" value="Project 2/2a/main.cpp" />
+      <option name="sourceFile" value="Project 3/3b/main.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main.cpp" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2560_Projects" TARGET_NAME="main.cpp" CONFIG_NAME="main.cpp">
+      <option name="sourceFile" value="Project 3/3b/main.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="maze_base.cpp (1)" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2560_Projects" TARGET_NAME="maze_base.cpp" CONFIG_NAME="maze_base.cpp">
+      <option name="sourceFile" value="Project 5/5b/maze_base.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="maze_base.cpp" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2560_Projects" TARGET_NAME="maze_base.cpp" CONFIG_NAME="maze_base.cpp">
+      <option name="sourceFile" value="Project 5/5a/maze_base.cpp" />
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="C/C++ File.maze_base.cpp (1)" />
+      <item itemvalue="C/C++ File.maze_base.cpp" />
       <item itemvalue="C/C++ File.main.cpp" />
+      <item itemvalue="C/C++ File.main.cpp (1)" />
+      <item itemvalue="C/C++ File.main.cpp (2)" />
       <item itemvalue="CMake Application.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="C/C++ File.maze_base.cpp (1)" />
+        <item itemvalue="C/C++ File.maze_base.cpp" />
+        <item itemvalue="C/C++ File.main.cpp (1)" />
         <item itemvalue="C/C++ File.main.cpp" />
+        <item itemvalue="C/C++ File.main.cpp (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -151,67 +215,78 @@
       <updated>1706650917468</updated>
       <workItem from="1706650940385" duration="4000" />
       <workItem from="1707082824769" duration="1279000" />
-      <workItem from="1708404228298" duration="11119000" />
-      <workItem from="1708528424698" duration="9545000" />
-      <workItem from="1708656890449" duration="2138000" />
+      <workItem from="1711667669571" duration="1513000" />
+      <workItem from="1712088381830" duration="3894000" />
+      <workItem from="1712355884703" duration="5988000" />
+      <workItem from="1712363242168" duration="12662000" />
+      <workItem from="1712537602670" duration="8271000" />
+      <workItem from="1713140821919" duration="13905000" />
     </task>
-    <task id="LOCAL-00001" summary="completed node header file for linked list">
+    <task id="LOCAL-00001" summary="Implemented updateConflicts and printConflicts functions">
       <option name="closed" value="true" />
-      <created>1708407133811</created>
+      <created>1712092333825</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1708407133811</updated>
+      <updated>1712092333825</updated>
     </task>
-    <task id="LOCAL-00002" summary="completed deck header and implementation">
+    <task id="LOCAL-00002" summary="Implemented updateConflicts and printConflicts functions">
       <option name="closed" value="true" />
-      <created>1708412332507</created>
+      <created>1712092410654</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1708412332507</updated>
+      <updated>1712092410654</updated>
     </task>
-    <task id="LOCAL-00003" summary="Implemented main fixed some issues in other files">
+    <task id="LOCAL-00003" summary="made implementations of part B">
       <option name="closed" value="true" />
-      <created>1708443280668</created>
+      <created>1712362816003</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1708443280668</updated>
+      <updated>1712362816004</updated>
     </task>
-    <task id="LOCAL-00004" summary="Created part b directory">
+    <task id="LOCAL-00004" summary="made implementations of part B">
       <option name="closed" value="true" />
-      <created>1708550219293</created>
+      <created>1712364114695</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1708550219293</updated>
+      <updated>1712364114695</updated>
     </task>
-    <task id="LOCAL-00005" summary="Created playFlip function">
+    <task id="LOCAL-00005" summary="fixed some bugs">
       <option name="closed" value="true" />
-      <created>1708653252756</created>
+      <created>1712367773257</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1708653252756</updated>
+      <updated>1712367773257</updated>
     </task>
-    <task id="LOCAL-00006" summary="adding implementation to playFlip function">
+    <task id="LOCAL-00006" summary="updated code, needs more fixing">
       <option name="closed" value="true" />
-      <created>1708654231230</created>
+      <created>1712541453237</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1708654231230</updated>
+      <updated>1712541453238</updated>
     </task>
-    <task id="LOCAL-00007" summary="adding implementation to playFlip function">
+    <task id="LOCAL-00007" summary="Revised mapMazeToGraph implementation as well as islegal">
       <option name="closed" value="true" />
-      <created>1708655780241</created>
+      <created>1713472836010</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1708655780241</updated>
+      <updated>1713472836011</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added minor part to printpath">
+      <option name="closed" value="true" />
+      <created>1713666432121</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1713666432121</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +298,26 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -246,12 +341,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="completed node header file for linked list" />
-    <MESSAGE value="completed deck header and implementation" />
-    <MESSAGE value="Implemented main fixed some issues in other files" />
-    <MESSAGE value="Created part b directory" />
-    <MESSAGE value="Created playFlip function" />
-    <MESSAGE value="adding implementation to playFlip function" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding implementation to playFlip function" />
+    <MESSAGE value="Implemented updateConflicts and printConflicts functions" />
+    <MESSAGE value="made implementations of part B" />
+    <MESSAGE value="fixed some bugs" />
+    <MESSAGE value="updated code, needs more fixing" />
+    <MESSAGE value="Revised mapMazeToGraph implementation as well as islegal" />
+    <MESSAGE value="added minor part to printpath" />
+    <option name="LAST_COMMIT_MESSAGE" value="added minor part to printpath" />
   </component>
 </project>
