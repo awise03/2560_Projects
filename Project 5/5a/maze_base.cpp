@@ -86,7 +86,7 @@ void maze::mapMazeToGraph(maze &m, graph &g) {
 
 // Prints the paths stored within the vector, paths
 void maze::printPath() {    
-    for(int i = paths.size(); i >= 0; i--) {
+    for(int i = paths.size() - 1; i >= 0; i--) {
         cout << paths[i] << endl;
     }
 }
@@ -232,7 +232,7 @@ int main() {
     char x;
     ifstream fin;
     // Read the maze from the file.
-    string fileName = "maze3-1.txt";
+    string fileName = "Project 5/5a/maze1.txt";
     fin.open(fileName.c_str());
     if (!fin) {
         cerr << "Cannot open " << fileName << endl;
