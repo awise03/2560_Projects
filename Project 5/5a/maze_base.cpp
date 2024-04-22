@@ -7,6 +7,7 @@
 #include <fstream>
 #include "d_matrix.h"
 #include "graph.h"
+#include <queue>
 
 using namespace std;
 
@@ -21,8 +22,11 @@ class maze {
         void mapMazeToGraph(maze &m, graph &g);
 
         bool findPathRecursive(graph &g, int next, int i, int j);
-        void findPathNonRecursive();
+        vector<int> findPathNonRecursive(graph &g);
         void printPath();
+        void clearVisited();
+        vector<int> findAdjNodes(graph &g, int n);
+        void printQueue(queue<int> q);
     private:
         int rows; // number of rows in the maze
         int cols; // number of columns in the maze
@@ -93,7 +97,7 @@ void maze::printPath() {
 
 // Recursively solves the maze using DFS 
 bool maze::findPathRecursive(graph &g, int next, int r, int c) {
-    print(rows, cols, r, c);
+    print(rows-1, cols-1, r, c);
     if(r == rows-1 && c == cols-1) {
         cout << "finished" << endl;
         return true;
@@ -171,6 +175,61 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
     return false;
 }
 
+vector<int> maze::findAdjNodes(graph &g, int n) {
+    vector<int> adjNodes;
+    for(int i = 0; i < g.numNodes(); i++) {
+        if(i != n && g.isEdge(n, i)) {
+            adjNodes.push_back(i);
+        }
+    }
+
+    return adjNodes;
+}
+
+void maze::printQueue(queue<int> q) {
+    while(!q.empty()) {
+        cout << q.front() << " ";
+        q.pop();
+    }
+    cout << endl;
+}
+
+vector<int> maze::findPathNonRecursive(graph &g) {
+    g.clearVisit();
+
+    vector<int> visited;
+    queue<int> q;
+    q.push(getMap(0, 0));
+
+
+    while(!q.empty()) {
+        printQueue(q);
+        int curr = q.front();
+        q.pop();
+        g.visit(curr);
+        visited.push_back(curr);
+        
+
+        if(curr == getMap(rows-1, cols-1)){
+            return visited;
+        }
+
+        vector<int> adjNodes;
+        adjNodes = findAdjNodes(g, curr);
+
+        for(int e = 0; e < adjNodes.size(); e++) {
+            if(!g.isVisited(adjNodes[e])) {
+                g.visit(adjNodes[e]);
+                q.push(adjNodes[e]);
+            }
+            
+        }
+
+    }
+
+    return visited;
+}
+
 // Initializes a maze by reading values from fin. Assumes that the
 // number of rows and columns indicated in the file are correct.
 maze::maze(ifstream &fin) {
@@ -232,7 +291,7 @@ int main() {
     char x;
     ifstream fin;
     // Read the maze from the file.
-    string fileName = "Project 5/5a/maze1.txt";
+    string fileName = "maze1.txt";
     fin.open(fileName.c_str());
     if (!fin) {
         cerr << "Cannot open " << fileName << endl;
@@ -245,7 +304,12 @@ int main() {
             maze m(fin);
             m.mapMazeToGraph(m, g);
             m.findPathRecursive(g, 0, 0, 0);
-            m.printPath();
+            //cout << g;
+            vector<int> visited = m.findPathNonRecursive(g);
+            for(int i = 0; i < visited.size(); i++) {
+                cout << visited[i] << " ";
+            }
+            //m.printPath();
         }
         //cout << g << endl;
     }
