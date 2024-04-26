@@ -91,6 +91,38 @@ void maze::mapMazeToGraph(maze &m, graph &g) {
     }
 }
 
+// Prints the paths stored within the vector, paths
+void maze::printPath() {
+    int r = 0;
+    int c = 0;    
+    print(rows-1, cols-1, r, c);
+    for(int i = paths.size() - 1; i >= 0; i--) {
+        if(paths[i] == "U") {
+           r -= 1;
+        } else if (paths[i] == "D") {
+            r += 1;
+        } else if (paths[i] == "R") {
+            c += 1;
+        } else {
+            c -= 1;
+        }
+        print(rows-1, cols-1, r, c);
+    }
+
+    for(int i = paths.size() - 1; i >= 0; i--) {
+        if(paths[i] == "U") {
+            cout << "Go Up!" << endl;
+        } else if (paths[i] == "D") {
+            cout << "Go Down!" << endl;
+        } else if (paths[i] == "R") {
+            cout << "Go Right!" << endl;
+        } else {
+            cout << "Go Left!" << endl;
+        }
+    }
+}
+
+
 // Finds a vector of all nodes adjacent to the given node
 vector<int> maze::findAdjNodes(graph &g, int n) {
     vector<int> adjNodes;
@@ -368,13 +400,13 @@ void maze::findShortestPath1(graph &g) {
         int c2 = path[i] % cols;
 
         if (r1 == r2 && c1 < c2)
-            paths.push_back("Go right");
+            paths.push_back("R");
         else if (r1 == r2 && c1 > c2)
-            paths.push_back("Go left");
+            paths.push_back("L");
         else if (c1 == c2 && r1 < r2)
-            paths.push_back("Go down");
+            paths.push_back("D");
         else if (c1 == c2 && r1 > r2)
-            paths.push_back("Go up");
+            paths.push_back("U");
     }
 
     printPath();
@@ -385,7 +417,7 @@ int main() {
     char x;
     ifstream fin;
     // Read the maze from the file.
-    string fileName = "Project 5/5b/maze3-1.txt";
+    string fileName = "maze1.txt";
     fin.open(fileName.c_str());
     if (!fin) {
         cerr << "Cannot open " << fileName << endl;
