@@ -24,12 +24,13 @@ class maze {
 
         bool findPathRecursive(graph &g, int next, int i, int j);
         vector<int> findPathNonRecursive(graph &g);
-        void printPath();
+        void printPath(const vector<int> &path);
         vector<int> findAdjNodes(graph &g, int n);
         void printQueue(queue<int> q);
         vector<string> createPath(vector<int> path);
 
         void findShortestPath1(graph &g);
+        void findShortestPath2(graph &g);
     private:
         int rows; // number of rows in the maze
         int cols; // number of columns in the maze
@@ -94,15 +95,72 @@ void maze::mapMazeToGraph(maze &m, graph &g) {
 // Finds a vector of all nodes adjacent to the given node
 vector<int> maze::findAdjNodes(graph &g, int n) {
     vector<int> adjNodes;
-    for(int i = 0; i < g.numNodes(); i++) {
-        if(i != n && g.isEdge(n, i)) {
-            adjNodes.push_back(i);
+
+    // Check the order: up, down, left, right
+    int row = -1, col = -1;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (getMap(i, j) == n) {
+                row = i;
+                col = j;
+                break;
+            }
         }
+        if (row != -1) break;
+    }
+
+    // Check the adjacent nodes in the order: up, down, left, right
+    if (row > 0 && g.isEdge(n, getMap(row - 1, col))) {
+        adjNodes.push_back(getMap(row - 1, col)); // Up
+    }
+    if (row < rows - 1 && g.isEdge(n, getMap(row + 1, col))) {
+        adjNodes.push_back(getMap(row + 1, col)); // Down
+    }
+    if (col > 0 && g.isEdge(n, getMap(row, col - 1))) {
+        adjNodes.push_back(getMap(row, col - 1)); // Left
+    }
+    if (col < cols - 1 && g.isEdge(n, getMap(row, col + 1))) {
+        adjNodes.push_back(getMap(row, col + 1)); // Right
     }
 
     return adjNodes;
 }
 
+//Prints the paths stored within the vector, paths
+
+void maze::printPath(const vector<int>& path) {
+    int r = 0;
+    int c = 0;
+    print(rows-1, cols-1, r, c);
+
+    for (int i = 1; i < path.size(); i++) {
+        int curr = path[i];
+
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                if (getMap(row, col) == curr) {
+                    r = row;
+                    c = col;
+                    break;
+                }
+            }
+        }
+
+        print(rows-1, cols-1, r, c);
+    }
+
+    for (const string& direction : paths) {
+        if (direction == "U") {
+            cout << "Go Up!" << endl;
+        } else if (direction == "D") {
+            cout << "Go Down!" << endl;
+        } else if (direction == "R") {
+            cout << "Go Right!" << endl;
+        } else {
+            cout << "Go Left!" << endl;
+        }
+    }
+}
 // Function to print queue
 void maze::printQueue(queue<int> q) {
     while(!q.empty()) {
@@ -161,35 +219,32 @@ vector<int> maze::findPathNonRecursive(graph &g) {
 
 // Creates a path based on provided node visit order
 vector<string> maze::createPath(vector<int> path) {
-    paths.clear();
+    vector<string> directions;
+    int prev_r = 0, prev_c = 0;
 
-    int prev_r = rows-1;
-    int prev_c = cols-1;
+    for (int i = 1; i < path.size(); i++) {
+        int curr = path[i];
 
-    for(int i = 1; i < path.size(); i++) {
-        
-        for(int curr_r = rows - 1; curr_r >= 0; curr_r--) {
-            for(int curr_c = cols - 1; curr_c >= 0; curr_c--){
-                if(getMap(curr_r,curr_c) == path[i] && value[curr_r][curr_c]) {
-                    
-                    if(curr_r < prev_r) paths.push_back("D");
-                    else if(curr_r > prev_r) paths.push_back("U");
-                    else if(curr_c < prev_c) paths.push_back("R");
-                    else if(curr_c > prev_c) paths.push_back("L");
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (getMap(r, c) == curr) {
+                    if (r < prev_r) directions.push_back("U");
+                    else if (r > prev_r) directions.push_back("D");
+                    else if (c > prev_c) directions.push_back("R");
+                    else if (c < prev_c) directions.push_back("L");
 
-                    prev_r = curr_r;
-                    prev_c = curr_c;
+                    prev_r = r;
+                    prev_c = c;
+                    break;
                 }
             }
         }
-
     }
 
-    printPath();
-    return paths;
+    return directions;
 }
 
-// Recursively solves the maze using DFS 
+// Recursively solves the maze using DFS
 bool maze::findPathRecursive(graph &g, int next, int r, int c) {
     // print(rows-1, cols-1, r, c);
     if(r == rows-1 && c == cols-1) {
@@ -205,9 +260,9 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
 
     // Right direction
     if((c+1) < cols && value[r][c+1]) { // Checks to see if we can move in this direction
-        
-        if(!g.isVisited(getMap(r, c+1))) { // Checks to see if the node to the right is unvisited 
-            
+
+        if(!g.isVisited(getMap(r, c+1))) { // Checks to see if the node to the right is unvisited
+
             next = map[r][c+1];
 
             if(findPathRecursive(g, next, r, c+1)) { // Recursively call with a traversal to the right
@@ -221,7 +276,7 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
     // Down direction
     if((r + 1) < rows && value[r+1][c]) { // Checks to see if we can move in this direction
 
-        if(!g.isVisited(getMap(r+1, c))) { // Checks to see if the node below is unvisited 
+        if(!g.isVisited(getMap(r+1, c))) { // Checks to see if the node below is unvisited
 
             next = map[r+1][c];
 
@@ -235,8 +290,8 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
     // Left direction
     if((c - 1) >= 0 && value[r][c-1]) { // Checks to see if we can move in this direction
         //cout << "entered left" << endl;
-        if(!g.isVisited(getMap(r, c-1))){ // Checks to see if the node to the left is unvisited 
-            
+        if(!g.isVisited(getMap(r, c-1))){ // Checks to see if the node to the left is unvisited
+
             next = map[r][c-1];
 
             if(findPathRecursive(g, next, r, c-1)) { // Recursively call with a traversal to the left
@@ -244,14 +299,14 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
                 return true;
             }
         }
-        
+
     }
 
-    // Up direction 
+    // Up direction
     if((r - 1) >= 0 && value[r-1][c]) { // Checks to see if we can move in this direction
 
-        if(!g.isVisited(getMap(r-1, c))) { // Checks to see if the node above is unvisited 
-            
+        if(!g.isVisited(getMap(r-1, c))) { // Checks to see if the node above is unvisited
+
             next = map[r-1][c];
 
             if(findPathRecursive(g, next, r-1, c)) { // Recursively call with a traversal up
@@ -259,12 +314,12 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
                 return true;
             }
         }
-       
+
 
     }
 
 
-    
+
     return false;
 }
 
@@ -327,65 +382,140 @@ bool maze::isLegal(int i, int j) {
 
 void maze::findShortestPath1(graph &g) {
     queue<int> q;
+    vector<int> parent(g.numNodes(), -1);
     vector<bool> visited(g.numNodes(), false);
-    vector<int> prev(g.numNodes(), -1);
+    int startNode = getMap(0, 0);
+    int goalNode = getMap(rows - 1, cols - 1);
 
-    int startNode = getMap(0, 0); // Assuming start at top-left corner
-    int endNode = getMap(rows - 1, cols - 1); // Assuming end at bottom-right corner
     q.push(startNode);
     visited[startNode] = true;
 
     while (!q.empty()) {
-        int currentNode = q.front();
+        int current = q.front();
         q.pop();
 
-        // Loop through adjacent nodes
-        for (int adjNode = 0; adjNode < g.numNodes(); ++adjNode) {
-            if (g.isEdge(currentNode, adjNode) && !visited[adjNode]) {
-                visited[adjNode] = true;
-                prev[adjNode] = currentNode;
-                q.push(adjNode);
-                if (adjNode == endNode) {
-                    break;
-                }
+        if (current == goalNode) {
+            break; // Reached the goal node
+        }
+
+        vector<int> adjNodes = findAdjNodes(g, current);
+
+        for (int next : adjNodes) {
+            if (!visited[next]) {
+                parent[next] = current;
+                visited[next] = true;
+                q.push(next);
             }
         }
     }
 
-    // Reconstruct the path from endNode to startNode
+    if (!visited[goalNode]) {
+        cout << "No path found." << endl;
+        return;
+    }
+
+    // Reconstruct the shortest path
     vector<int> path;
-    for (int at = endNode; at != -1; at = prev[at]) {
-        path.push_back(at);
+    int step = goalNode;
+    while (step != -1) {
+        path.push_back(step);
+        step = parent[step];
     }
     reverse(path.begin(), path.end());
 
-    // Convert path from node indices to directions
-    paths.clear(); // Clear any existing paths
-    for (size_t i = 1; i < path.size(); i++) {
-        int r1 = path[i-1] / cols; // Compute row index
-        int c1 = path[i-1] % cols; // Compute column index
-        int r2 = path[i] / cols;
-        int c2 = path[i] % cols;
+    // Output the shortest path
+    cout << "Shortest path found:" << endl;
+    paths = createPath(path);
+    printPath(path);
+}
+// use of Dijkstra's algorithm
+void maze::findShortestPath2(graph &g) {
+    vector<int> dist(g.numNodes(), INT_MAX);
+    vector<int> parent(g.numNodes(), -1);
+    vector<bool> visited(g.numNodes(), false);
+    int startNode = getMap(0, 0);
+    int goalNode = getMap(rows - 1, cols - 1);
 
-        if (r1 == r2 && c1 < c2)
-            paths.push_back("Go right");
-        else if (r1 == r2 && c1 > c2)
-            paths.push_back("Go left");
-        else if (c1 == c2 && r1 < r2)
-            paths.push_back("Go down");
-        else if (c1 == c2 && r1 > r2)
-            paths.push_back("Go up");
+    dist[startNode] = 0;
+
+    for (int i = 0; i < g.numNodes(); i++) {
+        int u = -1;
+        int minDist = INT_MAX;
+
+        for (int j = 0; j < g.numNodes(); j++) {
+            if (!visited[j] && dist[j] < minDist) {
+                u = j;
+                minDist = dist[j];
+            }
+        }
+
+        if (u == -1) {
+            break;
+        }
+
+        visited[u] = true;
+
+        if (u == goalNode) {
+            break;
+        }
+
+        vector<int> adjNodes = findAdjNodes(g, u);
+
+        for (int v : adjNodes) {
+            if (!visited[v] && dist[u] + 1 < dist[v]) {
+                dist[v] = dist[u] + 1;
+                parent[v] = u;
+            }
+        }
     }
 
-    printPath();
+    if (!visited[goalNode]) {
+        cout << "No path found." << endl;
+        return;
+    }
+
+    vector<int> path;
+    int step = goalNode;
+    while (step != -1) {
+        path.push_back(step);
+        step = parent[step];
+    }
+    reverse(path.begin(), path.end());
+
+    cout << "Shortest path found:" << endl;
+    paths = createPath(path);
+    printPath(path);
 }
 
 
 int main() {
     char x;
     ifstream fin;
-    // Read the maze from the file.
-    string fileName = "Project 5/5b/maze3-1.txt";
+    string fileName;
+    int choice;
+
+    cout << "Available mazes:" << endl;
+    cout << "1. maze1.txt" << endl;
+    cout << "2. maze2.txt" << endl;
+    cout << "3. maze3-1.txt" << endl;
+    cout << "Enter your choice (1-3): ";
+    cin >> choice;
+
+    switch (choice) {
+        case 1:
+            fileName = "Project 5/5b/maze1.txt";
+            break;
+        case 2:
+            fileName = "Project 5/5b/maze2.txt";
+            break;
+        case 3:
+            fileName = "Project 5/5b/maze3-1.txt";
+            break;
+        default:
+            cout << "Invalid choice. Exiting." << endl;
+            return 0;
+    }
+
     fin.open(fileName.c_str());
     if (!fin) {
         cerr << "Cannot open " << fileName << endl;
@@ -393,24 +523,45 @@ int main() {
     }
 
     try {
-        graph g;
         while (fin && fin.peek() != 'Z') {
-            graph g; // create graph object
+            graph g;
             maze m(fin);
             m.mapMazeToGraph(m, g);
-            m.findShortestPath1(g);
-            m.printPath();
-        }
-        //cout << g << endl;
-    }
 
+            int algorithmChoice;
+            cout << "Choose the algorithm to find the shortest path:" << endl;
+            cout << "1. Breadth-First Search (BFS)" << endl;
+            cout << "2. Dijkstra's Algorithm" << endl;
+            cout << "Enter your choice (1-2): ";
+            cin >> algorithmChoice;
+
+            switch (algorithmChoice) {
+                case 1:
+                    cout << "Using BFS algorithm:" << endl;
+                    m.findShortestPath1(g);
+                    break;
+                case 2:
+                    cout << "Using Dijkstra's algorithm:" << endl;
+                    m.findShortestPath2(g);
+                    break;
+                default:
+                    cout << "Invalid choice. Exiting." << endl;
+                    return 0;
+            }
+
+            cout << endl;
+        }
+    }
     catch (indexRangeError &ex) {
-        cout << ex.what() << endl; exit(1);
+        cout << ex.what() << endl;
+        exit(1);
     }
     catch (rangeError &ex) {
-        cout << ex.what() << endl; exit(1);
+        cout << ex.what() << endl;
+        exit(1);
     }
 
-    
-    
+    fin.close();
+
+    return 0;
 }

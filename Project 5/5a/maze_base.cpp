@@ -364,13 +364,13 @@ int main() {
     cin >> ans1;
     switch(ans1){
         case 1:
-            fileName = "maze1.txt";
+            fileName = "Project 5/5a/maze1.txt";
             break;
         case 2:
-            fileName = "maze2.txt";
+            fileName = "Project 5/5a/maze2.txt";
             break;
         case 3: 
-            fileName = "maze3-1.txt";
+            fileName = "Project 5/5a/maze3-1.txt";
             break;
         default:
             cout << "Invalid file. Default is maze1.txt";
