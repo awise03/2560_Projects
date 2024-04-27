@@ -127,7 +127,6 @@ vector<int> maze::findAdjNodes(graph &g, int n) {
 }
 
 //Prints the paths stored within the vector, paths
-
 void maze::printPath(const vector<int>& path) {
     int r = 0;
     int c = 0;
@@ -151,16 +150,18 @@ void maze::printPath(const vector<int>& path) {
 
     for (const string& direction : paths) {
         if (direction == "U") {
-            cout << "Go Up!" << endl;
+            cout << "Go Up! -> ";
         } else if (direction == "D") {
-            cout << "Go Down!" << endl;
+            cout << "Go Down! -> ";
         } else if (direction == "R") {
-            cout << "Go Right!" << endl;
+            cout << "Go Right! -> ";
         } else {
-            cout << "Go Left!" << endl;
+            cout << "Go Left! -> ";
         }
     }
+    cout << "End!" << endl;
 }
+
 // Function to print queue
 void maze::printQueue(queue<int> q) {
     while(!q.empty()) {
@@ -175,41 +176,39 @@ vector<int> maze::findPathNonRecursive(graph &g) {
     g.clearVisit();
     g.clearMark();
 
-    vector<int> visited;
-    vector<int> parent(g.numNodes(), -1);
-    queue<int> q;
-    q.push(getMap(0, 0));
+    vector<int> parent(g.numNodes(), -1); // Create vector of parent nodes utilized for the final path
+    queue<int> q; // Intialize an empty queue
+    q.push(getMap(0, 0)); // Add the first node to the queue 
 
 
     while(!q.empty()) {
-        //printQueue(q);
-        int curr = q.front();
+        
+        int curr = q.front(); // Grabs the top node in the queue
 
-        q.pop();
-        g.visit(curr);
+        q.pop(); // Pops this node
+        g.visit(curr); // Marks this node as visited
 
-        visited.push_back(curr);
         
 
-        if(curr == getMap(rows-1, cols-1)){
+        if(curr == getMap(rows-1, cols-1)){ // Checks to see if current node is the end of maze
             break;
         }
 
-        vector<int> adjNodes = findAdjNodes(g, curr);
+        vector<int> adjNodes = findAdjNodes(g, curr); // Finds the nodes adjacent to the current node
 
-        for(int next : adjNodes) {
-            if(!g.isMarked(next) && !g.isVisited(next)) {
-                g.mark(next);
-                q.push(next);
-                parent[next] = curr;
+        for(int next : adjNodes) { // Iterates through the adjacent nodes
+            if(!g.isMarked(next) && !g.isVisited(next)) { // Checks to see if the node is unvisted
+                g.mark(next);   // Marks the node 
+                q.push(next);   // Adds node to the queue
+                parent[next] = curr;    // Adds the node to the parent vector
             }
         }
     }
 
-    vector<int> path;
-    int curr = getMap(rows-1, cols-1);
-    while (curr != getMap(0,0)) {
-        path.push_back(curr);
+    vector<int> path; // Initialize vector of the pathing
+    int curr = getMap(rows-1, cols-1); // Grabs the last node in the maze
+    while (curr != getMap(0,0)) { // Iterates through until we reach the start
+        path.push_back(curr);   
         curr = parent[curr];
     }
     path.push_back(getMap(0,0));
@@ -317,8 +316,6 @@ bool maze::findPathRecursive(graph &g, int next, int r, int c) {
 
 
     }
-
-
 
     return false;
 }
@@ -428,6 +425,7 @@ void maze::findShortestPath1(graph &g) {
     paths = createPath(path);
     printPath(path);
 }
+
 // use of Dijkstra's algorithm
 void maze::findShortestPath2(graph &g) {
     vector<int> dist(g.numNodes(), INT_MAX);
@@ -487,7 +485,6 @@ void maze::findShortestPath2(graph &g) {
     printPath(path);
 }
 
-
 int main() {
     char x;
     ifstream fin;
@@ -503,13 +500,13 @@ int main() {
 
     switch (choice) {
         case 1:
-            fileName = "Project 5/5b/maze1.txt";
+            fileName = "maze1.txt";
             break;
         case 2:
-            fileName = "Project 5/5b/maze2.txt";
+            fileName = "maze2.txt";
             break;
         case 3:
-            fileName = "Project 5/5b/maze3-1.txt";
+            fileName = "maze3-1.txt";
             break;
         default:
             cout << "Invalid choice. Exiting." << endl;

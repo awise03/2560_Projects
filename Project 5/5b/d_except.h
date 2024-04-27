@@ -1,7 +1,7 @@
 #ifndef EXCEPTION_CLASSES
 #define EXCEPTION_CLASSES
 
-#include <sstream>
+#include <strstream>
 #include <string>
 
 using namespace std;
@@ -53,8 +53,7 @@ class indexRangeError: public baseException
 			baseException()
 		{
 			char indexString[80];
-			std::ostringstream indexErr;
-            indexErr.str(std::string(indexString,80));
+			ostrstream indexErr(indexString, 80);
 
 			indexErr << msg << "  index " << i << "  size = " << size << ends;
 			// indexRangeError can modify msgString, since it is in
@@ -116,7 +115,7 @@ class dateError: public baseException
 			baseException()
 		{
 			char dateStr[80];
-			std::ostringstream dateErr(dateStr, 80);
+			ostrstream dateErr(dateStr, 80);
 
 			dateErr << first << ' ' << v << ' ' << last << ends;
 			// dateError can modify msgString, since it is in
@@ -142,7 +141,7 @@ class fileOpenError: public baseException
 			baseException()
 		{
 			char errorStr[80];
-			std::ostringstream fileErr(errorStr, 80);
+			ostrstream fileErr(errorStr, 80);
 
 			fileErr << "Cannot open \"" << fname << "\"" << ends;
 			// fileOpenError can modify msgString, since it is in

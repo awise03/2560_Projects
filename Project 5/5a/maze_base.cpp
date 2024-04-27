@@ -109,20 +109,20 @@ void maze::printPath() {
 
     for(int i = paths.size() - 1; i >= 0; i--) {
         if(paths[i] == "U") {
-            cout << "Go Up!" << endl;
+            cout << "Go Up! -> ";
         } else if (paths[i] == "D") {
-            cout << "Go Down!" << endl;
+            cout << "Go Down! -> ";
         } else if (paths[i] == "R") {
-            cout << "Go Right!" << endl;
+            cout << "Go Right! -> ";
         } else {
-            cout << "Go Left!" << endl;
+            cout << "Go Left! -> ";
         }
     }
 }
 
 // Recursively solves the maze using DFS 
 bool maze::findPathRecursive(graph &g, int next, int r, int c) {
-    // print(rows-1, cols-1, r, c);
+    // Check if we have reached the end of the maze
     if(r == rows-1 && c == cols-1) {
         return true;
     }
@@ -225,41 +225,39 @@ vector<int> maze::findPathNonRecursive(graph &g) {
     g.clearVisit();
     g.clearMark();
 
-    vector<int> visited;
-    vector<int> parent(g.numNodes(), -1);
-    queue<int> q;
-    q.push(getMap(0, 0));
+    vector<int> parent(g.numNodes(), -1); // Create vector of parent nodes utilized for the final path
+    queue<int> q; // Intialize an empty queue
+    q.push(getMap(0, 0)); // Add the first node to the queue 
 
 
     while(!q.empty()) {
-        //printQueue(q);
-        int curr = q.front();
+        
+        int curr = q.front(); // Grabs the top node in the queue
 
-        q.pop();
-        g.visit(curr);
+        q.pop(); // Pops this node
+        g.visit(curr); // Marks this node as visited
 
-        visited.push_back(curr);
         
 
-        if(curr == getMap(rows-1, cols-1)){
+        if(curr == getMap(rows-1, cols-1)){ // Checks to see if current node is the end of maze
             break;
         }
 
-        vector<int> adjNodes = findAdjNodes(g, curr);
+        vector<int> adjNodes = findAdjNodes(g, curr); // Finds the nodes adjacent to the current node
 
-        for(int next : adjNodes) {
-            if(!g.isMarked(next) && !g.isVisited(next)) {
-                g.mark(next);
-                q.push(next);
-                parent[next] = curr;
+        for(int next : adjNodes) { // Iterates through the adjacent nodes
+            if(!g.isMarked(next) && !g.isVisited(next)) { // Checks to see if the node is unvisted
+                g.mark(next);   // Marks the node 
+                q.push(next);   // Adds node to the queue
+                parent[next] = curr;    // Adds the node to the parent vector
             }
         }
     }
 
-    vector<int> path;
-    int curr = getMap(rows-1, cols-1);
-    while (curr != getMap(0,0)) {
-        path.push_back(curr);
+    vector<int> path; // Initialize vector of the pathing
+    int curr = getMap(rows-1, cols-1); // Grabs the last node in the maze
+    while (curr != getMap(0,0)) { // Iterates through until we reach the start
+        path.push_back(curr);   
         curr = parent[curr];
     }
     path.push_back(getMap(0,0));
@@ -271,20 +269,24 @@ vector<int> maze::findPathNonRecursive(graph &g) {
 vector<string> maze::createPath(vector<int> path) {
     paths.clear();
 
-    int prev_r = rows-1;
+    int prev_r = rows-1; // Start at end of maze
     int prev_c = cols-1;
 
-    for(int i = 1; i < path.size(); i++) {
+    for(int i = 1; i < path.size(); i++) { // Go through each node in the path
         
+        // Iterate through to find the next node in path
         for(int curr_r = rows - 1; curr_r >= 0; curr_r--) {
             for(int curr_c = cols - 1; curr_c >= 0; curr_c--){
+
                 if(getMap(curr_r,curr_c) == path[i] && value[curr_r][curr_c]) {
                     
+                    // Compare current location with previous location to determine direction
                     if(curr_r < prev_r) paths.push_back("D");
                     else if(curr_r > prev_r) paths.push_back("U");
                     else if(curr_c < prev_c) paths.push_back("R");
                     else if(curr_c > prev_c) paths.push_back("L");
 
+                    // Update previous locations 
                     prev_r = curr_r;
                     prev_c = curr_c;
                 }
@@ -359,18 +361,18 @@ int main() {
     ifstream fin;
     // Read the maze from the file.
     string fileName = "maze1.txt";
-    cout << "Which maze would you like to solve? (Input number correspoinding to selection)\n\t1. maze1.txt (7x10)\n\t2.maze2.txt (20x20)\n\t3. maze3.txt (20x20)\n";
+    cout << "Which maze would you like to solve? (Input number correspoinding to selection)\n\t1. maze1.txt (7x10)\n\t2. maze2.txt (20x20)\n\t3. maze3.txt (20x20)\n";
     int ans1;
     cin >> ans1;
     switch(ans1){
         case 1:
-            fileName = "Project 5/5a/maze1.txt";
+            fileName = "maze1.txt";
             break;
         case 2:
-            fileName = "Project 5/5a/maze2.txt";
+            fileName = "maze2.txt";
             break;
         case 3: 
-            fileName = "Project 5/5a/maze3-1.txt";
+            fileName = "maze3-1.txt";
             break;
         default:
             cout << "Invalid file. Default is maze1.txt";
